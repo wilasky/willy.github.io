@@ -1,2 +1,7 @@
 # willy.github.io
-Notas, apuntes, write-ups, herramientas
+
+Notas y apuntes
+Metodologias
+Write-ups
+Tools
+Scripts
