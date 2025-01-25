@@ -1,5 +1,5 @@
 
-> Habilidades: Brainfuck Decode, SUID Privilege Escalation
+> Habilidades: Fuerza bruta,
 
 
 # RECONOCIMIENTO
