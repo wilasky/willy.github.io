@@ -1,8 +1,6 @@
-Bienvenido a mi perfil, aquí podras encontrar writeups de DockerLabs.
+# DockerLabs Writeups
 
+¡Bienvenido a mi repositorio de DockerLabs Writeups! Soy Willy, un apasionado de la ciberseguridad y el hacking ético. Este espacio está dedicado a documentar mis avances y compartir apuntes que puedan ser útiles para otras personas interesadas en este fascinante mundo.
 
-## Niveles
-
-- [Easy](writeups-dockerlabs/machines/Easy/)
-- [Medium](writeups-dockerlabs/machines/Medium/)
-- [Hard](writeups-dockerlabs/machines/Hard/)
+## Secciones
+- [Writeups](writeups-dockerlabs/)
