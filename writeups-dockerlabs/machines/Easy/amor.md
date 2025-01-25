@@ -83,33 +83,28 @@ gobuster dir -u http://172.17.0.2 -w /usr/share/seclists/Discovery/Web-Content/d
 
 Podemos ver que en ambos casos no se ha descubierto ningun directorio. :(
 
+## Fuerza Bruta
 
-
-
-
+Como obtuvimos dos nombres anteriormente, vamos a intenta hacer fuerza bruta con uno de ellos.
 ~~~ bash
-curl -sL -X GET http://172.17.0.2/images
+hydra -l carlota -P /usr/share/wordlists/rockyou.txt -t4 ssh://172.17.0.2
 ~~~
 
-![curl a images](https://github.com/user-attachments/assets/7a09eafc-ab53-485c-9079-72c92a91e74c)
+![hydra](https://i.imgur.com/gHUFhTq.png)
 
-- `-s`: No mostrar progreso o error de la solicitud
-- `-L`: Habilitar el redireccionamiento
-- `-X`: Especificar el método HTTP a usar
 
-![dir images](https://github.com/user-attachments/assets/502fede3-bd5b-440d-97ab-02620d42bbe3)
+- `-l`: Especificar un nombre.
+- `-P`: Especificar una lista de palabras.
+- `-t4`: Especificar hilos a usar. (más rapido)
+- `ssh`: Especifica el protocolo.
+
+
+
+
+![dir images]()
 
 Vemos un archivo  `agua_ssh.jpg`, procedemos a traerla a nuestra máquina y ver de qué se trata
 
-![imagen_ssh](https://github.com/user-attachments/assets/8757624b-9779-4469-af7c-4b72bf5c5fcc)
-
-~~~ bash
-wget http://aguademayo.local/images/agua_ssh.jpg
-~~~
-
-![wget agua_ssh](https://github.com/user-attachments/assets/90bbcbd2-1463-4918-a107-7b0b448d23b3)
-
-El nombre del archivo `agua_ssh.jpg` me parece un tanto raro, ya que contiene `ssh` en el nombre, esto me hace creer que `agua` es un usuario válido en la máquina.
 
 Si hacemos un análisis del archivo o imprimimos los caracteres de la imagen, no encontramos mayores pistas
 
@@ -119,7 +114,7 @@ Si hacemos un análisis del archivo o imprimimos los caracteres de la imagen, no
 exiftool agua_ssh.jpg
 ~~~
 
-![exiftool_analysis](https://github.com/user-attachments/assets/69759702-ede8-411b-bc90-af525c59fce0)
+![exiftool_analysis]()
 
 
 ## Strings
@@ -128,7 +123,7 @@ exiftool agua_ssh.jpg
 strings agua_ssh.jpg
 ~~~
 
-![listar caracteres](https://github.com/user-attachments/assets/8aba8f9d-253a-4533-a0e2-1528cdcaa042)
+![listar caracteres]()
 
 
 # Intrusión
@@ -137,16 +132,16 @@ strings agua_ssh.jpg
 
 Si vemos el código fuente podemos ver algo inusual al final del todo en un comentario HTML
 
-![web codigo raro](https://github.com/user-attachments/assets/467905dc-b906-47e8-9f9b-a92ebbefd7df)
+![web codigo raro]()
 
 Como no sabía a qué me enfrentaba, lo primero que hice fue buscar este comentario HTML en Google
 
-![decode ](https://github.com/user-attachments/assets/a8bfb2fb-b654-494a-bb43-81f6d1be466a)
+![decode ]()
 
 Podemos ver que hay un mensaje escrito en lenguaje Brainfuck, así que lo decodificaremos con ayuda de esta web `https://dcode.fr/brainfuck-language`
 **No olvidemos quitar los caracteres del comentario HTML** (`<!--` y `-->`)
 
-![decrypt](https://github.com/user-attachments/assets/0d8e55e6-bd5e-4690-b69a-3f77d109afc4)
+![decrypt]()
 
 Vemos que el mensaje escondido se trata de la palabra `bebeaguaqueessano`, quizá sea la contraseña del usuario `agua`, por lo que probamos conectarnos por `ssh`
 
@@ -154,7 +149,7 @@ Vemos que el mensaje escondido se trata de la palabra `bebeaguaqueessano`, quiz�
 ssh agua@aguademayo.local
 ~~~
 
-![entramos por ssh](https://github.com/user-attachments/assets/d00de753-2e0c-4d32-b543-4c7da29f1fb8)
+![entramos por ssh]()
 
 
 # Escalada de privilegios
@@ -175,7 +170,7 @@ Primeramente veremos si tenemos privilegios `sudo` con el siguiente comando
 sudo -l
 ~~~
 
-![sudo -l](https://github.com/user-attachments/assets/4c4df56f-36ed-4d14-87f8-5df9ce7673c0)
+![sudo -l]()
 
 - `-l`: Enumerar los comandos permitidos (o prohibidos) invocables por el usuario en la máquina actual
 
