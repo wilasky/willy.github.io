@@ -44,14 +44,7 @@ whatweb http://172.17.0.2
 
 Abrimos en navegador y vamos a dicha web, leemos y podemos ver algo interesante, una nota de `Carlota`.
 Yo siempre reviso view-source de la web por si se me escapa algo interesante. Siempre hay que enumerar todo lo que se pueda.
-![despido](https://i.imgur.com/1dDGSMN.png)
-
-
-
-
-
-
-
+![despido](https://i.imgur.com/JTVpkU4.png)
 
 
 
@@ -64,12 +57,13 @@ El siguiente paso será intentar descubrir posibles directorios, podemos usar cu
 wfuzz -c --hc=404 -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt -t 200 http://172.17.0.2/FUZZ
 ~~~
 
-![wfuzz_fuzzing]()
+![wfuzz](https://i.imgur.com/GEns8Jg.png)
 
 - `-c`: Formato colorizado
 - `--hc=404`: Ocultar el código de estado 404 (Not Found)
 - `-w`: Especificar un diccionario de palabras
 - `-t 200`: Dividir el proceso en 200 hilos, agilizando la tarea
+
 
 ### Gobuster
 
@@ -77,14 +71,18 @@ wfuzz -c --hc=404 -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.
 gobuster dir -u http://172.17.0.2 -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt -t 200
 ~~~
 
-![gobuster fuzzing]()
+![gobuster](https://i.imgur.com/qsO45ms.png)
 
 - `dir`: Modo de descubrimiento de directorios y archivos
 - `-u`: Dirección URL
 - `-w`: Diccionario a usar
 - `-t 200`: Establecer 200 subprocesos 
 
-Podemos ver que en ambos casos se ha descubierto el directorio `images`, vamos a ver que contiene con `firefox` y con `curl`, ya que pueden arrojar resultados diferentes dependiendo del user-agent.
+Podemos ver que en ambos casos no se ha descubierto mimgim directprio directorio. :(
+
+
+
+
 
 ~~~ bash
 curl -sL -X GET http://172.17.0.2/images
