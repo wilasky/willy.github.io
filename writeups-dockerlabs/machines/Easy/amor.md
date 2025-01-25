@@ -94,15 +94,15 @@ hydra -l carlota -P /usr/share/wordlists/rockyou.txt -t4 ssh://172.17.0.2
 ![hydra](https://i.imgur.com/gHUFhTq.png)
 
 
-- `-l`: Especificar un nombre.
-- `-P`: Especificar una lista de palabras.
-- `-t4`: Especificar hilos a usar. (más rapido)
+- `-l`: Especifica un nombre.
+- `-P`: Especifica una lista de palabras.
+- `-t4`: Especifica hilos a usar. (más rapido)
 - `ssh`: Especifica el protocolo.
 
 ~~~ bash
 medusa -h 172.17.0.2 -u carlota -P /usr/share/wordlists/rockyou.txt -M ssh -t 4
 ~~~
-![gobuster](https://i.imgur.com/qsO45ms.png)
+![gobuster](https://i.imgur.com/phRZEFc.png)
 
 - `-h`: Especifica la dirección IP del objetivo.
 - `-u`: Especifica el nombre de usuario a probar.
@@ -110,10 +110,7 @@ medusa -h 172.17.0.2 -u carlota -P /usr/share/wordlists/rockyou.txt -M ssh -t 4
 - `-M`: Especifica el módulo a utilizar, en este caso SSH.
 - `-t 4`: Especifica el número de hilos a utilizar para agilizar el proceso.
 
-¡¡BINGO!! obtuvimos las credenciales de Carlota.
-
-## Escalada de privilegios
-
+__¡¡BINGO!! obtuvimos las credenciales de Carlota.__
 
 
 # Escalada de privilegios
