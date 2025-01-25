@@ -28,11 +28,10 @@ Realizamos enumaeración a los puertos abiertos.
 ~~~ bash
 nmap -sVC -p 22,80 172.17.0.2 -oN ServicesScan
 ~~~
-- `-sC`: Ejecuta scripts NSE (Nmap Scripting Engine) predeterminados.
-- `-sV`: Detecta la versión del servicio que se está ejecutando en cada puerto abierto.
 
 ![Escaneo_Sevicios](https://i.imgur.com/6ybGn1A.png)
-
+- `-sC`: Ejecuta scripts NSE (Nmap Scripting Engine) predeterminados.
+- `-sV`: Detecta la versión del servicio que se está ejecutando en cada puerto abierto.
 _____________________________________________________________________________________________________________________________
 
 ## Http Service
