@@ -6,7 +6,7 @@
 
 ## Nmap
 
-Realizamos el primer sondeo a la ip para averiguar que puertos están abiertos:
+Realizamos el primer sondeo a la ip de la victimma para averiguar que puertos están abiertos:
 
 ~~~ bash
 nmap --open -p- -n -sS -Pn $ip -oG FirsScan
