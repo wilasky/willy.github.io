@@ -12,7 +12,7 @@ Realizamos el primer sondeo a la ip de la victimma para averiguar que puertos es
 nmap --open -p- -n -sS -Pn $ip -oG FirsScan
 ~~~
 
-![Primer Escaneo](https://i.imgur.com/NssolyM.png)
+![Primer_Escaneo](https://i.imgur.com/NssolyM.png)
 
 - `--open`: Nos muestre los puertos abiertos.
 - `-p-`: Escanear todo el rango de puertos (65535)
@@ -27,7 +27,7 @@ nmap --open -p- -n -sS -Pn $ip -oG FirsScan
 nmap -sVC -p 22,80 172.17.0.2 -oN ServicesScan
 ~~~
 
-![ports_scan](https://github.com/wilasky/images/blob/master/ServicesScan.png?raw=true)
+![Escaneo_Sevicios](https://i.imgur.com/NssolyM.png)
 
 
 ## Http Service
