@@ -22,7 +22,6 @@ nmap --open -p- -n -sS -Pn $ip -oG FirsScan
 - `-Pn`: Deshabilitar el descubrimiento de host, asumiendo que el objetivo se encuentra activo.
 - `-oG`: Exportar el escaneo a un formato `Grepable`, util para extraer información.
 
-</details>
 _____________________________________________________________________________________________________________________________
 
 ### ENUMERAR SERVICIOS
@@ -35,6 +34,7 @@ nmap -sVC -p 22,80 172.17.0.2 -oN ServicesScan
 
 ![Escaneo_Sevicios](https://i.imgur.com/6ybGn1A.png)
 
+</details>
 _____________________________________________________________________________________________________________________________
 
 ## Http Service
