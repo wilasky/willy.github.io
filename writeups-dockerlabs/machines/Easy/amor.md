@@ -29,18 +29,18 @@ nmap -sVC -p 22,80 172.17.0.2 -oN ServicesScan
 - `-sC`: Ejecuta scripts NSE (Nmap Scripting Engine) predeterminados.
 - `-sV`: Detecta la versión del servicio que se está ejecutando en cada puerto abierto.
 
-![Escaneo_Sevicios](https://i.imgur.com/lHx0CYZ.png)
+![Escaneo_Sevicios](https://i.imgur.com/6ybGn1A.png)
 
 
 ## Http Service
 
-Vemos el puerto `80` que corresponde a un servicio `http`, veamos que hay en él. Podemos usar la herramienta `whatweb` para listar las tecnologías detectadas en el servidor
+Vemos el puerto `80` que corresponde a un servicio `http`, veamos que hay en él. Podemos usar la herramienta `whatweb` para listar las tecnologías detectadas en el servidor. (Como alternativa, puedes usar la extension de navegador Wappalyzer)
 
 ~~~ bash
 whatweb http://172.17.0.2
 ~~~
 
-![web](https://github.com/user-attachments/assets/970206d2-801c-41fc-9bc5-d82bae6a4533)
+![whatweb](https://i.imgur.com/iz3f6TK.png)
 
 ## Fuzzing
 
