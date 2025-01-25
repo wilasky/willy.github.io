@@ -27,7 +27,7 @@ nmap --open -p- -n -sS -Pn $ip -oG FirsScan
 nmap -sVC -p 22,80 172.17.0.2 -oN ServicesScan
 ~~~
 
-![Escaneo_Sevicios](https://i.imgur.com/NssolyM.png)
+![Escaneo_Sevicios](https://i.imgur.com/lHx0CYZ.png)
 
 
 ## Http Service
