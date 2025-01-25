@@ -1,3 +1,17 @@
 title: DockerLabs Writeups
 description: Writeups de DockerLabs por Willy
 theme: jekyll-theme-slate
+
+author:
+  nickname: Willy
+  linkedin: https://www.linkedin.com/in/aitorn/
+  url: https://github.com/wilasky
+
+markdown: kramdown
+kramdown:
+  input: GFM
+
+header_pages:
+  - index.md
+  - writeups-dockerlabs/index.md
+  - writeups-dockerlabs/machines/index.md
