@@ -2,27 +2,24 @@
 > Habilidades: Brainfuck Decode, SUID Privilege Escalation
 
 
-![etc hosts](https://github.com/user-attachments/assets/6e7efbfd-fd04-4fce-b73f-889302bdbebf)
-
-
 # RECONOCIMIENTO
 
 ## Nmap
 
-Primer sondeo a la maquina para averiguar que puertos están abiertos:
+Realizamos el primer sondeo a la ip para averiguar que puertos están abiertos:
 
 ~~~ bash
-nmap --open -p- --min-rate 5000 -n -sS -v -Pn $ip -oG allPorts
+nmap --open -p- -n -sS -Pn $ip -oG FirsScan
 ~~~
 
-![first_nmap_scan](https://github.com/user-attachments/assets/49b10638-7878-43b7-a34f-0a7e3cb2abc2)
+![first_nmap_scan](https://raw.githubusercontent.com/wilasky/images/refs/heads/master/Nmap1Scan.png?token=GHSAT0AAAAAAC54CWSGEV6PDZMUVMIOYQYCZ4UYMXQ)
 
 - `--open`: Mostrar solamente los puertos abiertos
 - `-p-`: Escanear todo el rango de puertos (65535)
 - `-sS`: Modo de escaneo TCP SYN, usa una técnica más sigilosa para determinar que el puerto está abierto al no concluir la conexión
 - `-n`: No aplicar resolución DNS, lo que acelera el escaneo
 - `-Pn`: Deshabilitar el descubrimiento de host, o sea, asume que el objetivo se encuentra activo, por lo que no hace un `ping` previo a `aguademayo.local`
-- `-v`: Modo `verbose`, muestra los resultados del escaneo en tiempo real
+
 - `-oG`: Exportar el escaneo a un formato `Grepable`, lo que es más útil a la hora de extraer información de nuestro archivo, como por ejemplo, los puertos abiertos encontrados
 
 ### Services Scan
