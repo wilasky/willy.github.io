@@ -6,7 +6,7 @@
 
 <details>
   
- <summary>## Nmap</summary>summary>
+<summary>## Nmap</summary>
 
 Realizamos el primer sondeo a la ip de la victimma para averiguar que puertos están abiertos:
 
