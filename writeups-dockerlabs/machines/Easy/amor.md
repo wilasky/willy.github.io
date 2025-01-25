@@ -20,12 +20,14 @@ nmap --open -p- -n -sS -Pn $ip -oG FirsScan
 - `-n`: No aplicar resolución DNS.
 - `-Pn`: Deshabilitar el descubrimiento de host, asumiendo que el objetivo se encuentra activo.
 - `-oG`: Exportar el escaneo a un formato `Grepable`, util para extraer información.
-- 
+  
 ### ENUMERAR SERVICIOS
-
+Realizamos enumaeración a los puertos abiertos.
 ~~~ bash
 nmap -sVC -p 22,80 172.17.0.2 -oN ServicesScan
 ~~~
+- `-sC`: Ejecuta scripts NSE (Nmap Scripting Engine) predeterminados.
+- `-sV`: Detecta la versión del servicio que se está ejecutando en cada puerto abierto.
 
 ![Escaneo_Sevicios](https://i.imgur.com/lHx0CYZ.png)
 
