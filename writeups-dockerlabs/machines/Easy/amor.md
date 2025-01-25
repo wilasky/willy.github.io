@@ -1,5 +1,5 @@
 
-> Habilidades: Fuerza bruta,
+> Habilidades: Enumeración, análisis de archivos, decode Brainfuck, Escalada de privilegios (linux)
 
 
 # RECONOCIMIENTO
