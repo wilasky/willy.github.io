@@ -4,7 +4,7 @@ Bienvenido a la sección de máquinas fáciles. Aquí encontrarás writeups deta
 
 ## Lista de Writeups
 
-- [Writeup 1 - Amor](amor.md)
+- [Amor](amor.md)
 
 ## Navegación
 - [Volver a la página principal](../../index.md)
