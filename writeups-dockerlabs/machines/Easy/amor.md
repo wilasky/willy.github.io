@@ -42,6 +42,19 @@ whatweb http://172.17.0.2
 
 ![whatweb](https://i.imgur.com/iz3f6TK.png)
 
+Abrimos en navegador y vamos a dicha web, leemos y podemos ver algo interesante, una nota de `Carlota`.
+
+![despido](https://i.imgur.com/1dDGSMN.png)
+
+
+
+
+
+
+
+
+
+
 ## Fuzzing
 
 Lo siguiente que haremos será intentar descubrir posibles directorios existentes en este servicio web, en este caso podemos usar cualquier herramienta de fuzzing, usaré `wfuzz` y `gobuster`
