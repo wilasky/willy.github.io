@@ -1,11 +1,11 @@
 
 > Habilidades: Enumeración, steganografía, escalada de privilegios (linux)
-
+_____________________________________________________________________________________________________________________________________________________________________
 
 # RECONOCIMIENTO
-
+_____________________________________________________________________________________________________________________________________________________________________
 ## Nmap Scan
-
+_____________________________________________________________________________________________________________________________________________________________________
 Realizamos el primer sondeo a la ip de la victimma para averiguar que puertos están abiertos:
 
 ~~~ bash
@@ -21,9 +21,10 @@ nmap --open -p- -n -sS -Pn $ip -oG FirsScan
 - `-Pn`: Deshabilitar el descubrimiento de host, asumiendo que el objetivo se encuentra activo.
 - `-oG`: Exportar el escaneo a un formato `Grepable`, util para extraer información.
 
-_____________________________________________________________________________________________________________________________
+_____________________________________________________________________________________________________________________________________________________________________
 
 ### Enumerar Servicios
+_____________________________________________________________________________________________________________________________________________________________________
 Realizamos enumaeración a los puertos abiertos.
 ~~~ bash
 nmap -sVC -p 22,80 172.17.0.2 -oN ServicesScan
@@ -32,9 +33,10 @@ nmap -sVC -p 22,80 172.17.0.2 -oN ServicesScan
 ![Escaneo_Sevicios](https://i.imgur.com/6ybGn1A.png)
 - `-sC`: Ejecuta scripts NSE (Nmap Scripting Engine) predeterminados.
 - `-sV`: Detecta la versión del servicio que se está ejecutando en cada puerto abierto.
-_____________________________________________________________________________________________________________________________
+_____________________________________________________________________________________________________________________________________________________________________
 
 ## Http Service
+_____________________________________________________________________________________________________________________________________________________________________
 
 Vemos el puerto `80` que corresponde a un servicio `http`, veamos que hay en él. Podemos usar la herramienta `whatweb` para listar las tecnologías detectadas en el servidor. (Como alternativa, puedes usar la extension de navegador Wappalyzer)
 
@@ -48,9 +50,10 @@ Abrimos en navegador y vamos a dicha web, leemos y podemos ver algo interesante,
 Yo siempre reviso view-source de la web por si se me escapa algo interesante.
 ![despido](https://i.imgur.com/JTVpkU4.png)
 
-_____________________________________________________________________________________________________________________________
+_____________________________________________________________________________________________________________________________________________________________________
 
 ## Fuzzing
+_____________________________________________________________________________________________________________________________________________________________________
 
 El siguiente paso será intentar descubrir posibles directorios, podemos usar cualquier herramienta de fuzzing, yo usaré `wfuzz` y `gobuster`
 
@@ -81,10 +84,10 @@ gobuster dir -u http://172.17.0.2 -w /usr/share/seclists/Discovery/Web-Content/d
 - `-t 200`: Establecer 200 subprocesos 
 
 Podemos ver que en ambos casos no se ha descubierto ningun directorio. :(
-_____________________________________________________________________________________________________________________________
+_____________________________________________________________________________________________________________________________________________________________________
 
 ## Fuerza Bruta
-
+_____________________________________________________________________________________________________________________________________________________________________
 Como obtuvimos dos nombres anteriormente, vamos a intenta hacer fuerza bruta con uno de ellos. En este caso usaremos dos herramientas diferentes aunque con el mismo resultado.
 
 ~~~ bash
@@ -112,11 +115,11 @@ medusa -h 172.17.0.2 -u carlota -P /usr/share/wordlists/rockyou.txt -M ssh -t 4
 
 __¡¡BINGO!! obtuvimos las credenciales de Carlota.__
 
-_____________________________________________________________________________________________________________________________
+_____________________________________________________________________________________________________________________________________________________________________
 # Escalada de privilegios
+_____________________________________________________________________________________________________________________________________________________________________
 
-
-Una vez tenemos acceso, tratamos la TTY para poder usarla comodamente, para esto cambiaremos el valor de la variable `$TERM`. En este caso, nuestra shell (SSH) ya es interactiva, solo necesitaremos export TERM=xterm,
+Una vez tenemos acceso, tratamos la TTY para poder usarla comodamente, para esto cambiaremos el valor de la variable `$TERM`. En este caso, nuestra shell (SSH) ya es interactiva, solo necesitaremos export TERM=xterm.
 
 ~~~ bash
 > control Z
@@ -129,10 +132,7 @@ stty rows 44 columns 184
 
 ~~~
 
-***UNDER CONSTRUCTION***
-
-
-## Sudoers
+## Enumeracion entorno
 
 Primeramente veremos si tenemos privilegios `sudo` con el siguiente comando:
 
@@ -142,3 +142,5 @@ sudo -l
 
 ![sudo -l]()
 
+A continuación, intentar enumerar todo lo que los privilegios del usuario pueda. Si a primera vista no enconramos nada, habría que hacerlo mediante comandos.
+Este caso observamos un archivo sospechoso, antes de seguir buscando vamos a analizar el archivo.
