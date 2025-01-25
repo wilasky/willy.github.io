@@ -4,8 +4,7 @@
 
 # RECONOCIMIENTO
 
-<details>  
-  <summary>Haz click para ver **Nmap Scan**</summary>
+## Nmap Scan
 
 Realizamos el primer sondeo a la ip de la victimma para averiguar que puertos están abiertos:
 
@@ -34,7 +33,6 @@ nmap -sVC -p 22,80 172.17.0.2 -oN ServicesScan
 
 ![Escaneo_Sevicios](https://i.imgur.com/6ybGn1A.png)
 
-</details>
 _____________________________________________________________________________________________________________________________
 
 ## Http Service
