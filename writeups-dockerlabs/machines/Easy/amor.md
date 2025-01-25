@@ -6,7 +6,7 @@
 _____________________________________________________________________________________________________________________________________________________________________
 
 ## Nmap Scan
-_____________________________________________________________________________________________________________________________________________________________________
+
 Realizamos el primer sondeo a la ip de la victimma para averiguar que puertos están abiertos:
 
 ~~~ bash
@@ -25,7 +25,7 @@ nmap --open -p- -n -sS -Pn $ip -oG FirsScan
 _____________________________________________________________________________________________________________________________________________________________________
 
 ### Enumerar Servicios
-_____________________________________________________________________________________________________________________________________________________________________
+
 Realizamos enumaeración a los puertos abiertos.
 ~~~ bash
 nmap -sVC -p 22,80 172.17.0.2 -oN ServicesScan
@@ -37,7 +37,7 @@ nmap -sVC -p 22,80 172.17.0.2 -oN ServicesScan
 _____________________________________________________________________________________________________________________________________________________________________
 
 ## Http Service
-_____________________________________________________________________________________________________________________________________________________________________
+
 
 Vemos el puerto `80` que corresponde a un servicio `http`, veamos que hay en él. Podemos usar la herramienta `whatweb` para listar las tecnologías detectadas en el servidor. (Como alternativa, puedes usar la extension de navegador Wappalyzer)
 
@@ -55,7 +55,7 @@ ________________________________________________________________________________
 
 ## Fuzzing
 
-_____________________________________________________________________________________________________________________________________________________________________
+
 
 El siguiente paso será intentar descubrir posibles directorios, podemos usar cualquier herramienta de fuzzing, yo usaré `wfuzz` y `gobuster`
 
@@ -89,7 +89,7 @@ Podemos ver que en ambos casos no se ha descubierto ningun directorio. :(
 _____________________________________________________________________________________________________________________________________________________________________
 
 ## Fuerza Bruta
-_____________________________________________________________________________________________________________________________________________________________________
+
 Como obtuvimos dos nombres anteriormente, vamos a intenta hacer fuerza bruta con uno de ellos. En este caso usaremos dos herramientas diferentes aunque con el mismo resultado.
 
 ~~~ bash
@@ -119,7 +119,6 @@ __¡¡BINGO!! obtuvimos las credenciales de Carlota.__
 
 _____________________________________________________________________________________________________________________________________________________________________
 # Escalada de privilegios
-_____________________________________________________________________________________________________________________________________________________________________
 
 Una vez tenemos acceso, tratamos la TTY para poder usarla comodamente, para esto cambiaremos el valor de la variable `$TERM`. En este caso, nuestra shell (SSH) ya es interactiva, solo necesitaremos export TERM=xterm.
 
