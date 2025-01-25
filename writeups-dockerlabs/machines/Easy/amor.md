@@ -121,6 +121,9 @@ stty rows 44 columns 184
 
 ~~~
 
+***UNDER CONSTRUCTION***
+
+
 ## Sudoers
 
 Primeramente veremos si tenemos privilegios `sudo` con el siguiente comando
