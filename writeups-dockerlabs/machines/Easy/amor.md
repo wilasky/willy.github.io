@@ -14,18 +14,17 @@ nmap --open -p- -n -sS -Pn $ip -oG FirsScan
 
 ![first_nmap_scan](https://raw.githubusercontent.com/wilasky/images/refs/heads/master/Nmap1Scan.png?token=GHSAT0AAAAAAC54CWSGFOTTOEKDLLFILLBOZ4UYUEQ)
 
-- `--open`: Mostrar solamente los puertos abiertos
+- `--open`: Ideal para que vaya mostrando los puertos abiertos.
 - `-p-`: Escanear todo el rango de puertos (65535)
 - `-sS`: Modo de escaneo TCP SYN, usa una técnica más sigilosa para determinar que el puerto está abierto al no concluir la conexión
 - `-n`: No aplicar resolución DNS, lo que acelera el escaneo
-- `-Pn`: Deshabilitar el descubrimiento de host, o sea, asume que el objetivo se encuentra activo, por lo que no hace un `ping` previo a `aguademayo.local`
-
+- `-Pn`: Deshabilitar el descubrimiento de host, o sea, asume que el objetivo se encuentra activo.
 - `-oG`: Exportar el escaneo a un formato `Grepable`, lo que es más útil a la hora de extraer información de nuestro archivo, como por ejemplo, los puertos abiertos encontrados
 
-### Services Scan
+### ENUMERAR SERVICIOS
 
 ~~~ bash
-nmap -sVC -p 22,80 aguademayo.local -oN targeted
+nmap -sVC -p 22,80 172.17.0.2 -oN ServicesScan
 ~~~
 
 ![ports_scan](https://github.com/user-attachments/assets/ffb91eb8-6e7f-44cd-8927-ab8724c33796)
