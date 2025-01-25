@@ -1,9 +1,9 @@
 
-> Habilidades: Enumeración, steganografía, escalada de privilegios (linux)
+> Habilidades: Enumeración, esteganografía, escalada de privilegios (linux)
 
 
 # RECONOCIMIENTO
-_____________________________________________________________________________________________________________________________________________________________________
+
 
 ## Nmap Scan
 
