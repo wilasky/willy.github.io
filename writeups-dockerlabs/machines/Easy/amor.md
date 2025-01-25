@@ -4,9 +4,8 @@
 
 # RECONOCIMIENTO
 
-<details>
-  
-<summary>## Nmap</summary>
+<details>  
+  <summary>## Nmap</summary>
 
 Realizamos el primer sondeo a la ip de la victimma para averiguar que puertos están abiertos:
 
@@ -22,6 +21,7 @@ nmap --open -p- -n -sS -Pn $ip -oG FirsScan
 - `-n`: No aplicar resolución DNS.
 - `-Pn`: Deshabilitar el descubrimiento de host, asumiendo que el objetivo se encuentra activo.
 - `-oG`: Exportar el escaneo a un formato `Grepable`, util para extraer información.
+  
  </details>
 _____________________________________________________________________________________________________________________________
 
