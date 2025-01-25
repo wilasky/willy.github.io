@@ -1,5 +1,5 @@
 
-> Habilidades: Enumeración, análisis de archivos, decode Brainfuck, Escalada de privilegios (linux)
+> Habilidades: Enumeración, steganografía, escalada de privilegios (linux)
 
 
 # RECONOCIMIENTO
@@ -108,10 +108,17 @@ hydra -l carlota -P /usr/share/wordlists/rockyou.txt -t4 ssh://172.17.0.2
 # Escalada de privilegios
 
 
-Una vez tenemos acceso, tratamos la TTY para esto cambiaremos el valor de la variable `$TERM`
+Una vez tenemos acceso, tratamos la TTY para poder usarla comodamente, para esto cambiaremos el valor de la variable `$TERM`
 
 ~~~ bash
+> control Z
+stty raw -echo; fg
+reset xterm
 export TERM=xterm
+stty size
+stty rows 44 columns 184
+
+
 ~~~
 
 ## Sudoers
