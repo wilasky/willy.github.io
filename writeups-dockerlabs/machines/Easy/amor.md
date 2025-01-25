@@ -43,7 +43,7 @@ whatweb http://172.17.0.2
 ![whatweb](https://i.imgur.com/iz3f6TK.png)
 
 Abrimos en navegador y vamos a dicha web, leemos y podemos ver algo interesante, una nota de `Carlota`.
-
+Yo siempre reviso view-source de la web por si se me escapa algo interesante. Siempre hay que enumerar todo lo que se pueda.
 ![despido](https://i.imgur.com/1dDGSMN.png)
 
 
