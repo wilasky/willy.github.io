@@ -12,7 +12,7 @@ Realizamos el primer sondeo a la ip para averiguar que puertos están abiertos:
 nmap --open -p- -n -sS -Pn $ip -oG FirsScan
 ~~~
 
-![first_nmap_scan](https://i.imgur.com/NssolyM.png)
+![Primer Escaneo](https://i.imgur.com/NssolyM.png)
 
 - `--open`: Nos muestre los puertos abiertos.
 - `-p-`: Escanear todo el rango de puertos (65535)
