@@ -57,34 +57,34 @@ Abrimos en navegador y vamos a dicha web, leemos y podemos ver algo interesante,
 
 ## Fuzzing
 
-Lo siguiente que haremos será intentar descubrir posibles directorios existentes en este servicio web, en este caso podemos usar cualquier herramienta de fuzzing, usaré `wfuzz` y `gobuster`
-### Wfuzz
+El siguiente paso será intentar descubrir posibles directorios, podemos usar cualquier herramienta de fuzzing, yo usaré `wfuzz` y `gobuster`
 
+### Wfuzz
 ~~~ bash
-wfuzz -c --hc=404 -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt -t 200 http://aguademayo.local/FUZZ
+wfuzz -c --hc=404 -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt -t 200 http://172.17.0.2/FUZZ
 ~~~
 
-![wfuzz_fuzzing](https://github.com/user-attachments/assets/118a1b0f-c47e-43e7-b0ae-481a9c397ec7)
+![wfuzz_fuzzing]()
 
 - `-c`: Formato colorizado
-- `--hc=404`: Ocultar el código de estado 404 (No encontrado)
+- `--hc=404`: Ocultar el código de estado 404 (Not Found)
 - `-w`: Especificar un diccionario de palabras
 - `-t 200`: Dividir el proceso en 200 hilos, agilizando la tarea
 
 ### Gobuster
 
 ~~~ bash
-gobuster dir -u http://aguademayo.local -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt -t 200
+gobuster dir -u http://172.17.0.2 -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt -t 200
 ~~~
 
-![gobuster fuzzing](https://github.com/user-attachments/assets/53042682-8d30-463e-87b2-1447df299489)
+![gobuster fuzzing]()
 
 - `dir`: Modo de descubrimiento de directorios y archivos
 - `-u`: Dirección URL
 - `-w`: Diccionario a usar
 - `-t 200`: Establecer 200 subprocesos 
 
-Podemos ver que en ambos casos se ha descubierto el directorio `images`, vamos a ver que contiene con `firefox`, o si no te gusta abandonar la terminal, con `curl`
+Podemos ver que en ambos casos se ha descubierto el directorio `images`, vamos a ver que contiene con `firefox` y con `curl`, ya que pueden arrojar resultados diferentes dependiendo del user-agent.
 
 ~~~ bash
 curl -sL -X GET http://172.17.0.2/images
