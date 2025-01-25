@@ -49,7 +49,7 @@ Abrimos en navegador y vamos a dicha web, leemos y podemos ver algo interesante,
 Yo siempre reviso view-source de la web por si se me escapa algo interesante. Siempre hay que enumerar todo lo que se pueda.
 ![despido](https://i.imgur.com/JTVpkU4.png)
 
-
+_____________________________________________________________________________________________________________________________
 
 ## Fuzzing
 
@@ -82,6 +82,7 @@ gobuster dir -u http://172.17.0.2 -w /usr/share/seclists/Discovery/Web-Content/d
 - `-t 200`: Establecer 200 subprocesos 
 
 Podemos ver que en ambos casos no se ha descubierto ningun directorio. :(
+_____________________________________________________________________________________________________________________________
 
 ## Fuerza Bruta
 
@@ -98,65 +99,16 @@ hydra -l carlota -P /usr/share/wordlists/rockyou.txt -t4 ssh://172.17.0.2
 - `-t4`: Especificar hilos a usar. (más rapido)
 - `ssh`: Especifica el protocolo.
 
+¡¡BINGO!! obtuvimos las credenciales de Carlota.
 
+## Escalada de privilegios
 
-
-![dir images]()
-
-Vemos un archivo  `agua_ssh.jpg`, procedemos a traerla a nuestra máquina y ver de qué se trata
-
-
-Si hacemos un análisis del archivo o imprimimos los caracteres de la imagen, no encontramos mayores pistas
-
-## Exiftool Analysis
-
-~~~ bash
-exiftool agua_ssh.jpg
-~~~
-
-![exiftool_analysis]()
-
-
-## Strings
-
-~~~ bash
-strings agua_ssh.jpg
-~~~
-
-![listar caracteres]()
-
-
-# Intrusión
----
-## Brainfuck Decode
-
-Si vemos el código fuente podemos ver algo inusual al final del todo en un comentario HTML
-
-![web codigo raro]()
-
-Como no sabía a qué me enfrentaba, lo primero que hice fue buscar este comentario HTML en Google
-
-![decode ]()
-
-Podemos ver que hay un mensaje escrito en lenguaje Brainfuck, así que lo decodificaremos con ayuda de esta web `https://dcode.fr/brainfuck-language`
-**No olvidemos quitar los caracteres del comentario HTML** (`<!--` y `-->`)
-
-![decrypt]()
-
-Vemos que el mensaje escondido se trata de la palabra `bebeaguaqueessano`, quizá sea la contraseña del usuario `agua`, por lo que probamos conectarnos por `ssh`
-
-~~~ bash
-ssh agua@aguademayo.local
-~~~
-
-![entramos por ssh]()
 
 
 # Escalada de privilegios
----
-## Tratamiento TTY
 
-Una vez tenemos acceso, haremos un tratamiento de la TTY para limpiar la pantalla con `Ctrl + L`, para esto cambiaremos el valor de la variable `$TERM`
+
+Una vez tenemos acceso, tratamos la TTY para esto cambiaremos el valor de la variable `$TERM`
 
 ~~~ bash
 export TERM=xterm
@@ -185,10 +137,6 @@ sudo bettercap
 
 Veamos el panel de ayuda con el comando `help`
 
-![bettercap help](https://github.com/user-attachments/assets/3752382d-c7d9-4f66-acbb-784d1a8385f3)
-
-![help bettercap](https://github.com/user-attachments/assets/42e3730f-aa2b-414c-8185-d124b5e4cd7b)
-
 
 ## SUID Privilege Escalation
 
@@ -204,8 +152,6 @@ También podemos hacer esto con un solo comando con la opción `-eval`
 sudo bettercap -eval "! chmod u+s /bin/bash"
 ~~~
 
-![cambiar el privilegio onliner](https://github.com/user-attachments/assets/48db4ad6-d528-42c2-a14d-f0fd8c97b612)
-
 - `-eval`: Ejecutar un comando en la máquina
 
 
@@ -213,7 +159,7 @@ sudo bettercap -eval "! chmod u+s /bin/bash"
 
 Ahora supuestamente asignamos la capacidad de ejecutar `bash` como el usuario `root`, lo podemos verificar con el comando `ls -l /bin/bash` para listar los permisos.
 
-![bash permisions](https://github.com/user-attachments/assets/d3d00e95-9394-47b6-8d64-6bb444c6eae4)
+![bash permisions]()
 
 Así que ejecutamos `bash` como el propietario, y nos convertimos en el usuario `root`
 
@@ -223,4 +169,8 @@ bash -p
 
 - `-p`: Ejecutar como el usuario original
 
-![bash como root](https://github.com/user-attachments/assets/3bdbe0a3-ad67-4758-80ed-03c209b20d9b)
+![bash como root]()
+
+
+
+
