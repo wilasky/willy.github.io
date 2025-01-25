@@ -5,7 +5,7 @@
 # RECONOCIMIENTO
 
 <details>  
-  <summary>Haz click para ver Nmap Scan</summary>
+  <summary>Haz click para ver **Nmap Scan**</summary>
 
 Realizamos el primer sondeo a la ip de la victimma para averiguar que puertos están abiertos:
 
