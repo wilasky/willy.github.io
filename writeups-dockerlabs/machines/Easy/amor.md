@@ -164,14 +164,15 @@ Con las opciones extract y sf estraemos los metadatos si los hubiera en un archi
 steghide extract -sf imagen.jpg
 ~~~
 El contenido del archivo parece estar codificado en base64.
-![base64](https://github.com/wilasky/willy.github.io/blob/master/writeups-dockerlabs/machines/Easy/images/)
+
+![base64](https://github.com/wilasky/willy.github.io/blob/master/writeups-dockerlabs/machines/Easy/images/stg.png)
 
 Decodificamos con un simple comando.
 
 ~~~
 cat secret.txt | base64 -d
 ~~~
-![decode](https://github.com/wilasky/willy.github.io/blob/master/writeups-dockerlabs/machines/Easy/images/)
+![decode](https://github.com/wilasky/willy.github.io/blob/master/writeups-dockerlabs/machines/Easy/images/decode.png)
 
 Probamos el resultado para escalar a root pero no hay suerte. Revisamos el archivo /etc/passwd para ver los usuarios.
 Obseramos tres usuarios activos, oscar, carlota y root.
