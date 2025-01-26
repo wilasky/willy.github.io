@@ -165,7 +165,7 @@ steghide extract -sf imagen.jpg
 ~~~
 El contenido del archivo parece estar codificado en base64.
 
-![base64](https://github.com/wilasky/willy.github.io/blob/master/writeups-dockerlabs/machines/Easy/images/stg.png)
+![steg](https://github.com/wilasky/willy.github.io/blob/master/writeups-dockerlabs/machines/Easy/images/stg.png)
 
 Decodificamos con un simple comando.
 
@@ -180,14 +180,14 @@ Obseramos tres usuarios activos, oscar, carlota y root.
 ~~~
 cat /etc/passwd
 ~~~
-![users](https://github.com/wilasky/willy.github.io/blob/master/writeups-dockerlabs/machines/Easy/images/)
+![users](https://github.com/wilasky/willy.github.io/blob/master/writeups-dockerlabs/machines/Easy/images/users.png)
 
 Intentamos usar la contraseña encoontrada en Oscar y parece que funciona.
 ~~~
 su oscar
 whoami
 ~~~
-![decode](https://github.com/wilasky/willy.github.io/blob/master/writeups-dockerlabs/machines/Easy/images/)
+![whoami](https://github.com/wilasky/willy.github.io/blob/master/writeups-dockerlabs/machines/Easy/images/oscar.png)
 
 
 
