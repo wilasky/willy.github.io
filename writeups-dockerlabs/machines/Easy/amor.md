@@ -13,7 +13,7 @@ Realizamos el primer sondeo a la ip de la victimma para averiguar que puertos es
 nmap --open -p- -n -sS -Pn $ip -oG FirsScan
 ~~~
 
-![Primer_Escaneo](https://i.imgur.com/NssolyM.png)
+![Primer_Escaneo](https://github.com/wilasky/willy.github.io/blob/master/writeups-dockerlabs/machines/Easy/images/Nmap1Scan.png)
 
 - `--open`: Nos muestre los puertos abiertos.
 - `-p-`: Escanear todo el rango de puertos (65535)
