@@ -139,6 +139,7 @@ Vamos a comprobar si tiene información oculta. En primer lugar nos la descargam
 scp carlota@172.17.0.2:/home/carlota/Desktop/fotos/vacaciones/imagen.jpg /opt/amor
 ~~~
 ![scp](https://github.com/wilasky/willy.github.io/blob/master/writeups-dockerlabs/machines/Easy/images/scp.png)
+
 El segundo sería crear un servidor temporal con python y descargarla desde el lado del atacante.
 
 ~~~ bash
