@@ -174,23 +174,42 @@ cat secret.txt | base64 -d
 ~~~
 ![decode](https://github.com/wilasky/willy.github.io/blob/master/writeups-dockerlabs/machines/Easy/images/decode.png)
 
-Probamos el resultado para escalar a root pero no hay suerte. Revisamos el archivo /etc/passwd para ver los usuarios.
-Obseramos tres usuarios activos, oscar, carlota y root.
+Probamos la contraseña para escalar a root pero no hay suerte. Revisamos el archivo /etc/passwd para ver los usuarios.
+Observamos tres usuarios activos, oscar, carlota y root.
 
 ~~~
 cat /etc/passwd
 ~~~
 ![users](https://github.com/wilasky/willy.github.io/blob/master/writeups-dockerlabs/machines/Easy/images/users.png)
 
-Intentamos usar la contraseña encoontrada en Oscar y parece que funciona.
+Probamos con el usuario Oscar y efectivamente funciona.
 ~~~
 su oscar
 whoami
 ~~~
 ![whoami](https://github.com/wilasky/willy.github.io/blob/master/writeups-dockerlabs/machines/Easy/images/oscar.png)
 
+Los siguientes pasos consisten en enumerar al igual que con el usuario Carlota.
 
+Tanto directorios, como permisos  de archivos, rutas. El primer paso es saber si puede ejecutar sudo con `sudo -l`.
+~~~
+sudo -l
+~~~
+![whoami](https://github.com/wilasky/willy.github.io/blob/master/writeups-dockerlabs/machines/Easy/images/nopasswd.png)
 
+Podemos ver que el usuario Oscar puede ejecutar /usr/bin/ruby como root sin necesidad de contraseña.
+Ahora vamos a averiguar la manera. Vamos a la web gtfobins.github.io, buscamos ruby y seleccionamos sudo.
+Leemos atentamente, en este camos buscamos un shell simplemente.
+
+![whoami](https://github.com/wilasky/willy.github.io/blob/master/writeups-dockerlabs/machines/Easy/images/ruby.png)
+~~~
+sudo ruby -e 'exec "/bin/sh"'
+whoami
+~~~
+
+![whoami](https://github.com/wilasky/willy.github.io/blob/master/writeups-dockerlabs/machines/Easy/images/root.png)
+
+Pues ya estaría :D
 
 
 
