@@ -154,7 +154,7 @@ wget http://172.17.0.2:8080/imagen.jpg
 ![wget](https://github.com/wilasky/willy.github.io/blob/master/writeups-dockerlabs/machines/Easy/images/wget.png)
 
 
-## Esteganografía
+## Esteganografía y escalada de privilegios
 
 Para comprobar si tiene informacion oculta o metadatos, usaremos la herramienta steghide.
 
