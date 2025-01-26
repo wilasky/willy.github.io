@@ -1,9 +1,8 @@
 
 > Habilidades: Enumeración, fuerza bruta, escalada de privilegios (linux), esteganografía.
-
+![intro](https://github.com/wilasky/willy.github.io/blob/master/writeups-dockerlabs/machines/Easy/images/intro.png?raw=true)
 
 # RECONOCIMIENTO
-
 
 ## Nmap Scan
 
