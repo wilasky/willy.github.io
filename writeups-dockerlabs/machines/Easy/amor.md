@@ -127,7 +127,7 @@ Una vez tenemos acceso, tratamos la TTY para poder usarla comodamente, para ello
 export TERM=xterm
 ~~~
 
-## Enumeracion entorno
+### Enumeracion entorno
 
 En primer lugar veremos si tenemos privilegios `sudo` mediante `sudo -l`, pero no hay suerte. Seguimos enumerando y vemos una imagen en una carpeta de Carlota.
 
