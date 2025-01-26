@@ -1,5 +1,5 @@
 
-> Habilidades: Enumeración, esteganografía, escalada de privilegios (linux)
+> Habilidades: Enumeración, fuerza bruta, escalada de privilegios (linux), esteganografía.
 
 
 # RECONOCIMIENTO
@@ -156,12 +156,12 @@ wget http://172.17.0.2:8080/imagen.jpg
 
 ## Esteganografía
 
-Para comprobar si tiene informacion oculta o metadatos, usaremos la herramienta steghiede.
+Para comprobar si tiene informacion oculta o metadatos, usaremos la herramienta steghide.
 
 Con las opciones extract y sf estraemos los metadatos si los hubiera en un archivo.
 
 ~~~
-steghiede extract -sf imagen.jpg
+steghide extract -sf imagen.jpg
 ~~~
 El contenido del archivo parece estar codificado en base64.
 ![base64](https://github.com/wilasky/willy.github.io/blob/master/writeups-dockerlabs/machines/Easy/images/)
