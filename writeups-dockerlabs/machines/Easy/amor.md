@@ -165,7 +165,7 @@ steghide extract -sf imagen.jpg
 ~~~
 El contenido del archivo parece estar codificado en base64.
 
-![steg](https://github.com/wilasky/willy.github.io/blob/master/writeups-dockerlabs/machines/Easy/images/stg.png)
+![steg](https://github.com/wilasky/willy.github.io/blob/master/writeups-dockerlabs/machines/Easy/images/stg.png?raw=true)
 
 Decodificamos con un simple comando.
 
