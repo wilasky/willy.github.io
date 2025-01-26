@@ -120,28 +120,75 @@ __¡¡BINGO!! obtuvimos las credenciales de Carlota.__
 _____________________________________________________________________________________________________________________________________________________________________
 # Escalada de privilegios
 
-Una vez tenemos acceso, tratamos la TTY para poder usarla comodamente, para esto cambiaremos el valor de la variable `$TERM`. En este caso, nuestra shell (SSH) ya es interactiva, solo necesitaremos export TERM=xterm.
+Una vez tenemos acceso, tratamos la TTY para poder usarla comodamente, para ello cambiaremos el valor de la variable `$TERM`. En este caso, nuestra shell (SSH) ya es interactiva, solo necesitaremos export TERM=xterm.
 
 ~~~ bash
-> control Z
-stty raw -echo; fg
-reset xterm
+/bin/bash -i
 export TERM=xterm
-stty size
-stty rows 44 columns 184
-
-
 ~~~
 
 ## Enumeracion entorno
 
-Primeramente veremos si tenemos privilegios `sudo` con el siguiente comando:
+En primer lugar veremos si tenemos privilegios `sudo` mediante `sudo -l`, pero no hay suerte. Seguimos enumerando y vemos una imagen en una carpeta de Carlota.
+
+![estego]()
+
+Vamos a comprobar si tiene información oculta. En primer lugar nos la descargamos, para ello lo vamos a hacer de dos modos diferentes, es bueno saver varias maneras de hacer las cosas ya que no siempre funcionan los mismos metodos.
 
 ~~~ bash
-sudo -l
+scp carlota@172.17.0.2:/home/carlota/Desktop/fotos/vacaciones/imagen.jpg /opt/amor
 ~~~
+![scp]()
+El segundo sería crear un servidor temporal con python y descargarla desde el lado del atacante.
 
-![sudo -l]()
+~~~ bash
+Victima
+python3 -m http.server 8080
+~~~
+![httpserver]()
+~~~
+Atacante
+wget http://172.17.0.2:8080/imagen.jpg
+~~~
+![wget]()
 
-A continuación, intentar enumerar todo lo que los privilegios del usuario pueda. Si a primera vista no enconramos nada, habría que hacerlo mediante comandos.
-Este caso observamos un archivo sospechoso, antes de seguir buscando vamos a analizar el archivo.
+
+## Esteganografía
+
+Para comprobar si tiene informacion oculta o metadatos, usaremos la herramienta steghiede.
+
+Con las opciones extract y sf estraemos los metadatos si los hubiera en un archivo.
+
+~~~
+steghiede extract -sf imagen.jpg
+~~~
+El contenido del archivo parece estar codificado en base64.
+![base64]()
+
+Decodificamos con un simple comando.
+
+~~~
+cat secret.txt | base64 -d
+~~~
+![decode]()
+
+Probamos el resultado para escalar a root pero no hay suerte. Revisamos el archivo /etc/passwd para ver los usuarios.
+Obseramos tres usuarios activos, oscar, carlota y root.
+
+~~~
+cat /etc/passwd
+~~~
+![users]()
+
+Intentamos usar la contraseña encoontrada en Oscar y parece que funciona.
+~~~
+su oscar
+whoami
+~~~
+![decode]()
+
+
+
+
+
+
