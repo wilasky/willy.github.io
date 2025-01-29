@@ -26,7 +26,7 @@ ________________________________________________________________________________
 
 ### Enumerar Servicios
 
-Realizamos enumaeración a los puertos abiertos lanzando los scripts predetermiandos e indicando la versión de los servicios. (-sC -sV)
+Realizamos enumeración a los puertos abiertos lanzando los scripts predeterminados e indicando la versión de los servicios. (-sC -sV)
 ~~~ bash
 nmap -sVC -p 22,80 172.17.0.2 -oN ServicesScan
 ~~~
@@ -49,7 +49,7 @@ whatweb http://172.17.0.2
 ![whatweb](https://github.com/wilasky/willy.github.io/blob/master/writeups-dockerlabs/machines/Easy/images/whatweb.png?raw=true)
 
 Abrimos en navegador y vamos a dicha web. Leemos y podemos ver algo interesante: una nota de `Carlota`.
-Siempre reviso el codigo fuente de la web `view-source` por si se me escapa algo interesante.
+Siempre reviso el código fuente de la web `view-source` por si se me escapa algo interesante.
 
 ![despido](https://github.com/wilasky/willy.github.io/blob/master/writeups-dockerlabs/machines/Easy/images/despidoempleado.png?raw=true)
 
