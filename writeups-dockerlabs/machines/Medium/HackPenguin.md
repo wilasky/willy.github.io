@@ -2,7 +2,7 @@
 
 > Habilidades: XXXxxXXXs (linux), esteganografía.
 > 
-![intro]()
+![intro](https://github.com/wilasky/willy.github.io/blob/master/writeups-dockerlabs/machines/Medium/images/Intro.png?raw=true)
 
 # RECONOCIMIENTO
 
