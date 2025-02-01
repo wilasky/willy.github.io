@@ -90,7 +90,7 @@ stegseek penguin.jpg
 
 ![penguibruteforze](https://github.com/wilasky/willy.github.io/blob/master/writeups-dockerlabs/machines/Medium/images/stegkek.png?raw=true)
 
-Encontro la contraseña muy easy, exporto un arhivo con extensión kdbx, relativo a un gestor de contraseñas: `KeepPass`.
+Encontro la contraseña muy easy, exportó un arhivo con extensión kdbx y relativo a un gestor de contraseñas: `KeepPass`.
 
 
 
