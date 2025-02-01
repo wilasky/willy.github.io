@@ -32,7 +32,7 @@ Realizamos enumeración a los puertos abiertos lanzando los scripts predetermina
 nmap -sVC -p 22,80 172.17.0.2 -oN ServicesScan
 ~~~
 
-![Primer_Escaneo]()
+![ServicesScan]()
 
 
 - `-sC`: Ejecuta scripts NSE (Nmap Scripting Engine) predeterminados.
