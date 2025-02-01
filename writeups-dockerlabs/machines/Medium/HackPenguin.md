@@ -1,6 +1,6 @@
 
 
-> Habilidades: XXXxxXXXs (linux), esteganografía.
+> Habilidades: Enumeración, esteganografía, fuerza bruta, escalada de privilegios
 > 
 ![intro](https://github.com/wilasky/willy.github.io/blob/master/writeups-dockerlabs/machines/Medium/images/Intro.png?raw=true)
 
