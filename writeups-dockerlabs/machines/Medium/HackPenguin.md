@@ -90,7 +90,7 @@ stegseek penguin.jpg
 
 ![penguibruteforze]()
 
-Encontro la contraseña sin mucho esfuerzo, nos exporto un arhivo kdbx, relativo a KeepPass.
+Encontro la contraseña muy easy, exporto un arhivo con extensión kdbx, relativo a un gestor de contraseñas: `KeepPass`.
 
 
 
