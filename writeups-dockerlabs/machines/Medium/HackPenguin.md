@@ -72,7 +72,7 @@ gobuster dir -u http://172.17.0.2 -w /usr/share/dirbuster/wordlists/directory-li
 
 Encontramos un directorio interesante, penguin.html, nos dirigimos a la página a ver que podemos encontrar.
 
-![penguinweb]()
+![penguinweb](https://github.com/wilasky/willy.github.io/blob/master/writeups-dockerlabs/machines/Medium/images/penguinweb.png?raw=true)
 
 Como siempre, revisamos también el código fuente, pero no encontramos nada. Vamos a revisar la imagen por si contuviera información oculta en los píxeles menos relevantes, usaremos la herramienta `steghide`. Con las opciones `extract` y `sf`.
 
@@ -88,7 +88,7 @@ El contenido de la imagen parece estár protegido por una contraseña. Hay herra
 stegseek penguin.jpg
 ~~~
 
-![penguibruteforze]()
+![penguibruteforze](https://github.com/wilasky/willy.github.io/blob/master/writeups-dockerlabs/machines/Medium/images/stegkek.png?raw=true)
 
 Encontro la contraseña muy easy, exporto un arhivo con extensión kdbx, relativo a un gestor de contraseñas: `KeepPass`.
 
