@@ -74,8 +74,7 @@ Encontramos un directorio interesante, penguin.html, nos dirigimos a la página 
 
 ![penguinweb]()
 
-Como siempre, revisamos también el código fuente, pero no encontramos nada. Vamos a revisar la imagen por si contuviera información escondida en los píxeles menos relevantes.
-Usaremos la herramienta steghide para extraer dicha información.
+Como siempre, revisamos también el código fuente, pero no encontramos nada. Vamos a revisar la imagen por si contuviera información oculta en los píxeles menos relevantes, usaremos la herramienta `steghide`. Con las opciones `extract` y `sf`.
 
 ~~~
 steghide extract -sf imagen.jpg
@@ -83,11 +82,15 @@ steghide extract -sf imagen.jpg
 
 ![penguinweb]()
 
-El contenido de la imagen parece estár protegido por una contraseña. Hay herramientas para realizar fuerza bruta vamos a ello.
+El contenido de la imagen parece estár protegido por una contraseña. Hay herramientas para realizar fuerza bruta vamos a ello, `stegseek`.
 
+~~~
+stegseek penguin.jpg
+~~~
 
+![penguibruteforze]()
 
-
+Encontro la contraseña sin mucho esfuerzo, nos exporto un arhivo kdbx, relativo a KeepPass.
 
 
 
