@@ -1,10 +1,9 @@
-title: DockerLabs Writeups
+title: DockerLabs
 description: Writeups de DockerLabs por Willy
 theme: jekyll-theme-slate
 
 author:
   nickname: Willy
-  linkedin: https://www.linkedin.com/in/aitorn/
   url: https://github.com/wilasky
 
 markdown: kramdown
