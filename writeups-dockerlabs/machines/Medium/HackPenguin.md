@@ -11,7 +11,7 @@
 Realizamos el primer sondeo a la IP de la víctima para averiguar qué puertos están abiertos:
 
 ~~~ bash
-nmap --open -p- -n -sS -Pn $ip -oG FirsScan
+nmap --open -p- -n -sS -Pn --min-rate=5000 $ip -oG FirsScan
 ~~~
 
 ![Primer_Escaneo]()
@@ -26,3 +26,46 @@ nmap --open -p- -n -sS -Pn $ip -oG FirsScan
 _____________________________________________________________________________________________________________________________________________________________________
 
 ### Enumerar Servicios
+
+Realizamos enumeración a los puertos abiertos lanzando los scripts predeterminados e indicando la versión de los servicios. (-sC -sV)
+~~~ bash
+nmap -sVC -p 22,80 172.17.0.2 -oN ServicesScan
+~~~
+
+![Primer_Escaneo]()
+
+
+- `-sC`: Ejecuta scripts NSE (Nmap Scripting Engine) predeterminados.
+- `-sV`: Detecta la versión del servicio que se está ejecutando en cada puerto abierto.
+
+_____________________________________________________________________________________________________________________________________________________________________
+
+## Http Service
+
+Vemos que el puerto `80` corresponde a un servicio HTTP. Vamos a investigar qué hay en él. Podemos usar la herramienta `whatweb` para listar las tecnologías detectadas en el servidor. (Como alternativa, puedes usar la extensión de navegador `Wappalyzer`).
+
+~~~ bash
+whatweb http://172.17.0.2
+~~~
+
+![whatweb]()
+
+Ahora nos dirijimos a reisar la web con el explorador. Vemos la pagina default del servidor Apache.
+
+![ApacheWeb]()
+
+Ahora realizaremos fuzzing para ver si encontramos algun directorio.
+
+
+### Gobuster
+~~~ bash
+gobuster dir -u http://172.17.0.2 -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -t 200 -x php,txt,html,php.bak
+~~~
+![gobuster]()
+
+- `dir`: Modo de descubrimiento de directorios y archivos
+- `-u`: Dirección URL
+- `-w`: Diccionario a usar
+- `-t 200`: Establecer 200 subprocesos 
+- `-x php,txt,html,php.bak`: Busca extensiones de archivo
+
