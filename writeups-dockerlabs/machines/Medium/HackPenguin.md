@@ -22,6 +22,7 @@ nmap --open -p- -n -sS -Pn --min-rate=5000 $ip -oG FirsScan
 - `-n`: No aplicar resolución DNS.
 - `-Pn`: Deshabilitar el descubrimiento de host, asumiendo que el objetivo se encuentra activo.
 - `-oG`: Exportar el escaneo a un formato `Grepable`, util para extraer información.
+- `--min-rate`: Tasa mínima de paquetes por segundo.
 
 _____________________________________________________________________________________________________________________________________________________________________
 
