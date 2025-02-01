@@ -51,7 +51,7 @@ whatweb http://172.17.0.2
 
 ![whatweb](https://github.com/wilasky/willy.github.io/blob/master/writeups-dockerlabs/machines/Medium/images/WhatWeb.png?raw=true)
 
-Ahora nos dirijimos a reisar la web con el explorador. Vemos la pagina default del servidor Apache.
+Ahora nos dirigimos a reisar la web con el explorador. Vemos la pagina default del servidor Apache.
 
 ![Apache2Web](https://github.com/wilasky/willy.github.io/blob/master/writeups-dockerlabs/machines/Medium/images/UbuntuWeb.png?raw=true)
 
