@@ -70,3 +70,46 @@ gobuster dir -u http://172.17.0.2 -w /usr/share/dirbuster/wordlists/directory-li
 - `-t 200`: Establecer 200 subprocesos 
 - `-x php,txt,html,php.bak`: Busca extensiones de archivo
 
+Encontramos un directorio interesante, penguin.html, nos dirigimos a la página a ver que podemos encontrar.
+
+![penguinweb]()
+
+Como siempre, revisamos también el código fuente, pero no encontramos nada. Vamos a revisar la imagen por si contuviera información escondida en los píxeles menos relevantes.
+Usaremos la herramienta steghide para extraer dicha información.
+
+~~~
+steghide extract -sf imagen.jpg
+~~~
+
+![penguinweb]()
+
+El contenido de la imagen parece estár protegido por una contraseña. Hay herramientas para realizar fuerza bruta vamos a ello.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
