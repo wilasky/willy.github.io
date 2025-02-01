@@ -14,7 +14,7 @@ Realizamos el primer sondeo a la IP de la víctima para averiguar qué puertos e
 nmap --open -p- -n -sS -Pn --min-rate=5000 $ip -oG FirsScan
 ~~~
 
-![Primer_Escaneo]()
+![Primer_Escaneo](https://github.com/wilasky/willy.github.io/blob/master/writeups-dockerlabs/machines/Medium/images/FirsScan.png?raw=true)
 
 - `--open`: Mostrar los puertos abiertos.
 - `-p-`: Escanear todo el rango de puertos (65535)
@@ -33,7 +33,7 @@ Realizamos enumeración a los puertos abiertos lanzando los scripts predetermina
 nmap -sVC -p 22,80 172.17.0.2 -oN ServicesScan
 ~~~
 
-![ServicesScan]()
+![ServicesScan](https://github.com/wilasky/willy.github.io/blob/master/writeups-dockerlabs/machines/Medium/images/ServicesScan.png?raw=true)
 
 
 - `-sC`: Ejecuta scripts NSE (Nmap Scripting Engine) predeterminados.
@@ -49,11 +49,11 @@ Vemos que el puerto `80` corresponde a un servicio HTTP. Vamos a investigar qué
 whatweb http://172.17.0.2
 ~~~
 
-![whatweb]()
+![whatweb](https://github.com/wilasky/willy.github.io/blob/master/writeups-dockerlabs/machines/Medium/images/WhatWeb.png?raw=true)
 
 Ahora nos dirijimos a reisar la web con el explorador. Vemos la pagina default del servidor Apache.
 
-![ApacheWeb]()
+![Apache2Web](https://github.com/wilasky/willy.github.io/blob/master/writeups-dockerlabs/machines/Medium/images/UbuntuWeb.png?raw=true)
 
 Ahora realizaremos fuzzing para ver si encontramos algun directorio.
 
@@ -62,7 +62,7 @@ Ahora realizaremos fuzzing para ver si encontramos algun directorio.
 ~~~ bash
 gobuster dir -u http://172.17.0.2 -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -t 200 -x php,txt,html,php.bak
 ~~~
-![gobuster]()
+![gobuster](https://github.com/wilasky/willy.github.io/blob/master/writeups-dockerlabs/machines/Medium/images/Gobuster.png?raw=true)
 
 - `dir`: Modo de descubrimiento de directorios y archivos
 - `-u`: Dirección URL
@@ -80,7 +80,7 @@ Como siempre, revisamos también el código fuente, pero no encontramos nada. Va
 steghide extract -sf imagen.jpg
 ~~~
 
-![penguinweb]()
+![steghide_pass](https://github.com/wilasky/willy.github.io/blob/master/writeups-dockerlabs/machines/Medium/images/steghide_pass.png?raw=true)
 
 El contenido de la imagen parece estár protegido por una contraseña. Hay herramientas para realizar fuerza bruta vamos a ello, `stegseek`.
 
