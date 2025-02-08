@@ -94,8 +94,10 @@ Encontro la contraseña muy easy, exportó un arhivo con extensión kdbx y relat
 
 Tambien podeis hacer la misma tarea con un script en bash:
 
-[Script fuerza bruta]
+<details>
+    <summary>Script</summary>
 
+```bash
 #!/bin/bash
 
 # Pedir rutas al usuario con ejemplos
@@ -123,7 +125,8 @@ while IFS= read -r password; do
         break
     fi
 done < "$rockyou_file"
-[Final/]
+```
+</details>
 
 
 
