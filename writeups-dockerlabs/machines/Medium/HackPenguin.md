@@ -142,7 +142,7 @@ Primero pasamos a un formato legible para john.
 keepass2john penguin.kdbx > hash
 ~~~
 
-A continuaci'on, hacemos fuerza bruta al archivo `hash`
+A continuaci'on, hacemos fuerza bruta al archivo `hash`.
 
 ![bruteforce]()
 
@@ -151,11 +151,17 @@ john --wordlist=/usr/share/wordlists/rockyou.txt hash
 john --show hash
 ~~~
 
-Abrimos el archivo con la contraseña encontrada, para ello usamos keepassxd
+Abrimos el archivo con la contraseña encontrada, para ello usamos keepassxc:
 
+![Keepasxc]()
 
+Una vez dentro obtenemos usuario y contraesña.
 
+![pinguinpass]()
 
+Nos conectamos mediante ssh con las credenciales y empezamos a enumerar el entorno.
+
+![ssh_enum]()
 
 
 
