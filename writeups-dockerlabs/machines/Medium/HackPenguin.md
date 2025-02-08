@@ -129,11 +129,29 @@ done < "$rockyou_file"
 </details>
 
 
+Al parecer, `chocolate` es la contraseña para extraer el archivo kdbx.
+Lo extraemos e intentamos abrir con la misma contraseña sin suerte. Intentaremos fuerza bruta con la herramienta de ´keepass2john´ y `John`
 
+![Extract_choco]()
 
+Primero pasamos a un formato legible para john.
 
+![Keepastohash]()
 
+~~~
+keepass2john penguin.kdbx > hash
+~~~
 
+A continuaci'on, hacemos fuerza bruta al archivo `hash`
+
+![bruteforce]()
+
+~~~
+john --wordlist=/usr/share/wordlists/rockyou.txt hash
+john --show hash
+~~~
+
+Abrimos el archivo con la contraseña encontrada, para ello usamos keepassxd
 
 
 
