@@ -159,6 +159,9 @@ done < "$rockyou_file"
 Abrimos el archivo con la contraseña encontrada, para ello usamos keepassxc:
 
 ![Keepasxc]()
+~~~
+keepassxc penguin.kdbx
+~~~
 
 Una vez dentro obtenemos usuario y contraesña.
 
@@ -167,9 +170,25 @@ Una vez dentro obtenemos usuario y contraesña.
 
 # Escalada de Privilegios
 
-Nos conectamos mediante ssh con las credenciales y empezamos a enumerar el entorno.
+Nos conectamos al host mediante ssh con las credenciales y empezamos a enumerar el entorno.
 
 ![ssh_enum]()
+~~~
+ssh penguin@172.17.0.2
+~~~
+
+Lanzamos algunos comandos básicos y observamos un cronjob ejecutando un script cada cierto tiempo.
+
+![basics_commands]()
+
+~~~
+sudo -l
+
+~~~
+
+
+
+
 
 
 
