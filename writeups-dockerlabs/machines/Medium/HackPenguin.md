@@ -76,6 +76,9 @@ Encontramos un directorio interesante, penguin.html, nos dirigimos a la página 
 
 Como siempre, revisamos también el código fuente, pero no encontramos nada. Vamos a revisar la imagen por si contuviera información oculta en los píxeles menos relevantes, usaremos la herramienta `steghide`. Con las opciones `extract` y `sf`.
 
+
+## Stego
+
 ~~~
 steghide extract -sf imagen.jpg
 ~~~
@@ -90,12 +93,36 @@ stegseek penguin.jpg
 
 ![penguibruteforze](https://github.com/wilasky/willy.github.io/blob/master/writeups-dockerlabs/machines/Medium/images/stegkek.png?raw=true)
 
-Encontro la contraseña muy easy, exportó un arhivo con extensión kdbx y relativo a un gestor de contraseñas: `KeepPass`.
+Encontró la contraseña muy easy, exportó un arhivo con extensión kdbx y relativo a un gestor de contraseñas: `KeepPass`.
 
-Tambien podeis hacer la misma tarea con un script en bash:
 
+
+
+
+Al parecer, `chocolate` es la contraseña para extraer el archivo kdbx.
+Lo extraemos e intentamos abrir con la misma contraseña sin suerte. Intentaremos fuerza bruta con la herramienta de ´keepass2john´ y `John`
+
+![Extract_choco]()
+
+Primero, lo pasamos a un formato legible para john.
+
+![Keepastohash]()
+
+~~~
+keepass2john penguin.kdbx > hash
+~~~
+
+A continuación, hacemos fuerza bruta al archivo `hash`.
+
+![bruteforce]()
+
+~~~
+john --wordlist=/usr/share/wordlists/rockyou.txt hash
+john --show hash
+~~~
+**
 <details>
-    <summary>Script</summary>
+    <summary>Script para la misma tarea que John</summary>
 
 ```bash
 #!/bin/bash
@@ -127,29 +154,7 @@ while IFS= read -r password; do
 done < "$rockyou_file"
 ```
 </details>
-
-
-Al parecer, `chocolate` es la contraseña para extraer el archivo kdbx.
-Lo extraemos e intentamos abrir con la misma contraseña sin suerte. Intentaremos fuerza bruta con la herramienta de ´keepass2john´ y `John`
-
-![Extract_choco]()
-
-Primero pasamos a un formato legible para john.
-
-![Keepastohash]()
-
-~~~
-keepass2john penguin.kdbx > hash
-~~~
-
-A continuaci'on, hacemos fuerza bruta al archivo `hash`.
-
-![bruteforce]()
-
-~~~
-john --wordlist=/usr/share/wordlists/rockyou.txt hash
-john --show hash
-~~~
+**
 
 Abrimos el archivo con la contraseña encontrada, para ello usamos keepassxc:
 
@@ -158,6 +163,9 @@ Abrimos el archivo con la contraseña encontrada, para ello usamos keepassxc:
 Una vez dentro obtenemos usuario y contraesña.
 
 ![pinguinpass]()
+
+
+# Escalada de Privilegios
 
 Nos conectamos mediante ssh con las credenciales y empezamos a enumerar el entorno.
 
