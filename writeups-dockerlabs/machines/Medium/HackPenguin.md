@@ -92,6 +92,38 @@ stegseek penguin.jpg
 
 Encontro la contraseña muy easy, exportó un arhivo con extensión kdbx y relativo a un gestor de contraseñas: `KeepPass`.
 
+Tambien podeis hacer la misma tarea con un script en bash:
+
+[Script fuerza bruta]
+
+#!/bin/bash
+
+# Pedir rutas al usuario con ejemplos
+read -p "Ruta del archivo diccionario (ej: /usr/share/wordlists/rockyou.txt): " rockyou_file
+read -p "Ruta del archivo imagen (ej: /home/user/Desktop/DockerLabs/HackPenguin/penguin.jpg): " image_file
+read -p "Ruta del archivo kdbx (ej: /home/user/Desktop/DockerLabs/HackPenguin/database.kdbx): " database_file
+
+# Variables
+output=""
+nIntentos=0
+
+# Verificar si los archivos existen
+[[ ! -f "$rockyou_file" ]] && echo "rockyou.txt no existe en la ruta indicada" && exit 1
+[[ -f "$database_file" ]] && echo "kdbx existe. Borrándolo..." && rm "$database_file"
+[[ ! -f "$image_file" ]] && echo "imagen.jpg no existe en la ruta indicada" && exit 1
+
+# Leer y probar contraseñas
+while IFS= read -r password; do
+    output=$(steghide --extract -sf "$image_file" -p "$password" 2>&1)
+    let "nIntentos++"
+    if [[ $output == *"no pude"* ]]; then
+        echo -ne "Probando... : $password\rNúmero de contraseñas probadas: $nIntentos\r"
+    else
+        echo -e "\n------------------------------------\nContraseña encontrada: $password"
+        break
+    fi
+done < "$rockyou_file"
+[Final/]
 
 
 
