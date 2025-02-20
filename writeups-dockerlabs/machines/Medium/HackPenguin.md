@@ -106,8 +106,6 @@ Lo extraemos e intentamos abrir con la misma contraseña sin suerte. Intentaremo
 
 Primero, lo pasamos a un formato legible para john.
 
-![Keepastohash](https://github.com/wilasky/willy.github.io/blob/master/writeups-dockerlabs/machines/Medium/images/keepassxc.png?raw=true)
-
 ~~~
 keepass2john penguin.kdbx > hash
 ~~~
