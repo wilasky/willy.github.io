@@ -176,13 +176,12 @@ Nos conectamos al host mediante ssh con las credenciales y empezamos a enumerar 
 ssh penguin@172.17.0.2
 ~~~
 
-Lanzamos algunos comandos básicos y observamos un cronjob ejecutando un script cada cierto tiempo.
+Enumeramos un poco y vemos dos archivos en el directorio del usuario Penguin.
 
-![basics_commands]()
+![files]()
 
 ~~~
-sudo -l
-
+ls -lah
 ~~~
 
 
