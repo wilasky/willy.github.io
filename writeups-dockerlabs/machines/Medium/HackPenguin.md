@@ -102,11 +102,11 @@ Encontró la contraseña muy easy, exportó un arhivo con extensión kdbx y rela
 Al parecer, `chocolate` es la contraseña para extraer el archivo kdbx.
 Lo extraemos e intentamos abrir con la misma contraseña sin suerte. Intentaremos fuerza bruta con la herramienta de ´keepass2john´ y `John`
 
-![Extract_choco]()
+![Extract_choco](https://github.com/wilasky/willy.github.io/blob/master/writeups-dockerlabs/machines/Medium/images/Extract_choco.png?raw=true)
 
 Primero, lo pasamos a un formato legible para john.
 
-![Keepastohash]()
+![Keepastohash](https://github.com/wilasky/willy.github.io/blob/master/writeups-dockerlabs/machines/Medium/images/keepassxc.png?raw=true)
 
 ~~~
 keepass2john penguin.kdbx > hash
@@ -114,7 +114,8 @@ keepass2john penguin.kdbx > hash
 
 A continuación, hacemos fuerza bruta al archivo `hash`.
 
-![bruteforce]()
+![brute](https://github.com/wilasky/willy.github.io/blob/master/writeups-dockerlabs/machines/Medium/images/burte.png?raw=true)
+![force](https://github.com/wilasky/willy.github.io/blob/master/writeups-dockerlabs/machines/Medium/images/force.png?raw=true)
 
 ~~~
 john --wordlist=/usr/share/wordlists/rockyou.txt hash
@@ -158,14 +159,14 @@ done < "$rockyou_file"
 
 Abrimos el archivo con la contraseña encontrada, para ello usamos keepassxc:
 
-![Keepasxc]()
+![Keepasxc](https://github.com/wilasky/willy.github.io/blob/master/writeups-dockerlabs/machines/Medium/images/keepassxc.png?raw=true)
 ~~~
 keepassxc penguin.kdbx
 ~~~
 
 Una vez dentro obtenemos usuario y contraesña.
 
-![pinguinpass]()
+![pinguinpass](https://github.com/wilasky/willy.github.io/blob/master/writeups-dockerlabs/machines/Medium/images/pinguipass.png?raw=true)
 
 
 # Escalada de Privilegios
