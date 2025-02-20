@@ -200,7 +200,7 @@ ls -la /bin/bash
 ![echo_binbash](https://github.com/wilasky/willy.github.io/blob/master/writeups-dockerlabs/machines/Medium/images/echo_binbash.png?raw=true)
 
 Como podemos ver, ya tenemos privilegios de root.
-Vamos a modificar el archivo `/etc/passwd` para eliminar la `x` en la línea de root, es una técnica para escalar privilegios. Normalmente, el archivo `/etc/passwd`
+Vamos a modificar el archivo `/etc/passwd` para eliminar la `x` en la línea de root, la manera correcta para usar escalar privilegios.
 
 ~~~ bash
 nano /etc/passwd
